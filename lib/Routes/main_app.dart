@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
 
 import 'homepage.dart';
 
 
-class IsvalApp extends StatelessWidget {
+/*class IsvalApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,4 +14,4 @@ class IsvalApp extends StatelessWidget {
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
-}
+}*/

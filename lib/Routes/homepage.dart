@@ -5,7 +5,7 @@ import 'package:isval_test/Models/stock.dart';
 import 'package:isval_test/Services/api_service.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -24,8 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Stock? stock;
 
   void _importStock() {
-    
-    ApiService().getStock('ABE001').then((value) => {updateStock(value) });
+    ApiService().getStock('ABE001').then((value) => {updateStock(value)});
   }
 
   @override
@@ -34,14 +33,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: Header(),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Wip number:',
-            ),
-            
-          ]
-        ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Wip number:',
+              ),
+            ]),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _importStock,
@@ -52,9 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   updateStock(Stock value) {
-    stock = value;        
-      setState(() {
-      if(stock != null){
+    stock = value;
+    setState(() {
+      if (stock != null) {
         _wip = stock!.totalStocks[0].wip;
         _ita = stock!.totalStocks[0].stockIta;
         _via = stock!.totalStocks[0].stockTrtoUs;
@@ -62,6 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
         _tcu = stock!.totalStocks[0].stockTrtoYou;
         _cns = stock!.totalStocks[0].consignment;
       }
-      });
+    });
   }
 }
