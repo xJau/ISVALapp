@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:isval_test/Components/Entry.dart';
 import 'package:isval_test/Components/header.dart';
 import 'package:isval_test/Models/stock.dart';
 import 'package:isval_test/Services/api_service.dart';
@@ -21,10 +20,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _tcu = 0;
   int _cns = 0;
 
-  Stock? stock;
+  late Stock stock;
 
   void _importStock() {
-    ApiService().getStock('ABE001').then((value) => {updateStock(value)});
+    ApiService.getStock('ABE001').then((value) => {updateStock(value)});
   }
 
   @override
@@ -51,14 +50,12 @@ class _MyHomePageState extends State<MyHomePage> {
   updateStock(Stock value) {
     stock = value;
     setState(() {
-      if (stock != null) {
-        _wip = stock!.totalStocks[0].wip;
-        _ita = stock!.totalStocks[0].stockIta;
-        _via = stock!.totalStocks[0].stockTrtoUs;
-        _usa = stock!.totalStocks[0].stockUs;
-        _tcu = stock!.totalStocks[0].stockTrtoYou;
-        _cns = stock!.totalStocks[0].consignment;
-      }
+      _wip = stock.totalStocks[0].wip;
+      _ita = stock.totalStocks[0].stockIta;
+      _via = stock.totalStocks[0].stockTrtoUs;
+      _usa = stock.totalStocks[0].stockUs;
+      _tcu = stock.totalStocks[0].stockTrtoYou;
+      _cns = stock.totalStocks[0].consignment;
     });
   }
 }
