@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:isval_test/Components/menu.dart';
+import 'package:isval_test/Utility/colorscheme.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
   @override
@@ -15,18 +16,15 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(_title),
+      backgroundColor: Colorscheme.BIANCO,
+      title: Text(_title, style: TextStyle(color: Colorscheme.AZZURRO_ISVAL)),
       actions: <Widget>[
         IconButton(
             onPressed: () {},
-            icon: Icon(
-              Icons.search,
-            )),
+            icon: Icon(Icons.search, color: Colorscheme.AZZURRO_ISVAL)),
         IconButton(
             onPressed: _onPress,
-            icon: Icon(
-              Icons.menu,
-            ))
+            icon: Icon(Icons.menu, color: Colorscheme.AZZURRO_ISVAL))
       ],
     );
   }
