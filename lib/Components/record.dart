@@ -16,7 +16,15 @@ class Record extends StatelessWidget {
     });
 
     return Card(
-      child: Column(children: entries.toList()),
-    );
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text(this._name,
+              style: TextStyle(color: Colors.blue, fontSize: 26))),
+      Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: entries.toList(),
+          mainAxisSize: MainAxisSize.min)
+    ]));
   }
 }

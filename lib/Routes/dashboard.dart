@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:isval_test/Components/header.dart';
 import 'package:isval_test/Components/record_list.dart';
 
 class DashboardRoute extends StatelessWidget {
@@ -6,6 +7,7 @@ class DashboardRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: RecordList(RecordType.STOCK)));
+    return Scaffold(
+        appBar: Header(), body: Center(child: RecordList(RecordType.STOCK)));
   }
 }

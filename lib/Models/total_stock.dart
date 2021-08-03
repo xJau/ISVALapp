@@ -1,7 +1,7 @@
-import 'package:isval_test/Models/i_record_model.dart';
+import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'total_stock.g.dart';
+part 'JSON/total_stock.g.dart';
 
 @JsonSerializable()
 class TotalStock implements IRecord {
@@ -41,5 +41,11 @@ class TotalStock implements IRecord {
       "xestcu": "$stockTrtoYou",
       "xescns": "$consignment"
     };
+  }
+
+  @override
+  String getRecordName() {
+    // TODO: implement getRecordName
+    throw UnimplementedError();
   }
 }

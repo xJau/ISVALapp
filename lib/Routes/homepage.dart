@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isval_test/Components/header.dart';
-import 'package:isval_test/Models/stock.dart';
+import 'package:isval_test/Interfaces/i_record_model.dart';
+import 'package:isval_test/Models/total_stock_model.dart';
 import 'package:isval_test/Services/api_service.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -20,11 +21,9 @@ class _MyHomePageState extends State<MyHomePage> {
   int _tcu = 0;
   int _cns = 0;
 
-  late Stock stock;
+  late List<IRecord> stock;
 
-  void _importStock() {
-    ApiService.getStock('ABE001').then((value) => {updateStock(value)});
-  }
+  void _importStock() {}
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +44,5 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-
-  updateStock(Stock value) {
-    stock = value;
-    setState(() {
-      _wip = stock.totalStocks[0].wip;
-      _ita = stock.totalStocks[0].stockIta;
-      _via = stock.totalStocks[0].stockTrtoUs;
-      _usa = stock.totalStocks[0].stockUs;
-      _tcu = stock.totalStocks[0].stockTrtoYou;
-      _cns = stock.totalStocks[0].consignment;
-    });
   }
 }
