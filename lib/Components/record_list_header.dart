@@ -5,6 +5,7 @@ import 'package:isval_test/Utility/colorscheme.dart';
 ///This is the header of a single Record List. It's the component that contains
 ///the Logo and the title of said list.
 class RecordListHeader extends StatelessWidget {
+  
   final RecordType _type;
   const RecordListHeader(this._type);
   @override
@@ -35,7 +36,7 @@ class RecordListHeader extends StatelessWidget {
                   shape: BoxShape.circle),
               child: Icon(Icons.shopping_bag_outlined, color: Colors.white)),
           SizedBox(width: 10),
-          Text("STOCK", style: TextStyle(color: Colorscheme.AZZURRO_ISVAL))
+          Text("STOCK", style: TextStyle(color: Colorpalette.AZZURRO_ISVAL))
         ]));
   }
 }

@@ -1,4 +1,3 @@
-import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:isval_test/Models/total_stock.dart';
 import 'package:json_annotation/json_annotation.dart';
 

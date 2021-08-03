@@ -16,15 +16,15 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colorscheme.BIANCO,
-      title: Text(_title, style: TextStyle(color: Colorscheme.AZZURRO_ISVAL)),
+      backgroundColor: Colorpalette.BIANCO,
+      title: Text(_title, style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),
       actions: <Widget>[
         IconButton(
             onPressed: () {},
-            icon: Icon(Icons.search, color: Colorscheme.AZZURRO_ISVAL)),
+            icon: Icon(Icons.search, color: Colorpalette.AZZURRO_ISVAL)),
         IconButton(
             onPressed: _onPress,
-            icon: Icon(Icons.menu, color: Colorscheme.AZZURRO_ISVAL))
+            icon: Icon(Icons.menu, color: Colorpalette.AZZURRO_ISVAL))
       ],
     );
   }

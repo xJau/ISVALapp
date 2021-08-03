@@ -19,18 +19,25 @@ class Record extends StatelessWidget {
     });
 
     return Card(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text(this._name,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text(
+              this._name,
               style: TextStyle(
-                  color: Colorscheme.AZZURRO_ISVAL,
+                  color: Colorpalette.AZZURRO_ISVAL,
                   fontSize: 26,
-                  fontWeight: FontWeight.bold))),
-      Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: entries.toList(),
-          mainAxisSize: MainAxisSize.min)
-    ]));
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: entries.toList(),
+              mainAxisSize: MainAxisSize.min),
+        ],
+      ),
+    );
   }
 }

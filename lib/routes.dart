@@ -15,7 +15,7 @@ class RouteGenerator {
   static const String metrics = '/metrics';
   static const String login = '/login';
 
-  RouteGenerator._() {}
+  RouteGenerator._();
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {

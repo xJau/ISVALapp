@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Colorscheme {
+class Colorpalette {
   static final Color AZZURRO_ISVAL = Color(0xff0a7bc0);
   static final Color AZZURRO_1 = Color(0xff1cb3e1);
   static final Color AZZURRO_2 = Color(0xff3990c5);

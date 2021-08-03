@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:isval_test/Components/header.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
-import 'package:isval_test/Models/total_stock_model.dart';
 import 'package:isval_test/Services/api_service.dart';
 
 class MyHomePage extends StatefulWidget {

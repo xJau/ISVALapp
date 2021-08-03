@@ -9,7 +9,7 @@ class DashboardRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colorscheme.SFONDO_PAGINA,
+        backgroundColor: Colorpalette.SFONDO_PAGINA,
         appBar: Header(),
         body: Center(child: RecordList(RecordType.STOCK)));
   }
