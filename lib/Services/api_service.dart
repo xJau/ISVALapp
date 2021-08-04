@@ -14,12 +14,15 @@ class ApiService {
   final String password = 'AdmSVLA2021';
   static final String url = 'https://localhost:44315/api/';
 
-  static Future<LoginResponseModel> login(LoginRequestModel loginRequestModel) async {
-    final response = await Dio().get(url + 'Account/authenticate',
-        queryParameters: loginRequestModel.toJson());
+  static Future<LoginResponseModel> login(
+      LoginRequestModel loginRequestModel) async {
+    var query = loginRequestModel.toJson();
+    var dio = Dio();
+    dio.options.headers['content-Type'] = 'application/json';
+    final response = await dio.post(url + 'Account/authenticate', data: query);
     if (response.statusCode == 200 || response.statusCode == 400) {
       return LoginResponseModel.fromJson(response.data);
-    } else { 
+    } else {
       throw Exception('Failed to load Data');
     }
   }

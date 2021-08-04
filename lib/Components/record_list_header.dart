@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:isval_test/Components/record_list.dart';
-import 'package:isval_test/Utility/colorscheme.dart';
+import 'package:isval_test/Utility/colorpalette.dart';
 
 ///This is the header of a single Record List. It's the component that contains
 ///the Logo and the title of said list.
 class RecordListHeader extends StatelessWidget {
-  
   final RecordType _type;
   const RecordListHeader(this._type);
   @override

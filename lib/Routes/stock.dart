@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:isval_test/routes.dart';
+import 'package:isval_test/Components/header.dart';
+import 'package:isval_test/Components/record_list.dart';
+import 'package:isval_test/Utility/colorpalette.dart';
 
 class StocksRoute extends StatelessWidget {
   const StocksRoute();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: ElevatedButton(
-                onPressed: () =>
-                    {Navigator.of(context).pushNamed(RouteGenerator.dashboard)},
-                child: const Text("Random"))));
+        backgroundColor: Colorpalette.SFONDO_PAGINA,
+        appBar: Header(),
+        body: Center(child: RecordList(RecordType.STOCK)));
   }
 }

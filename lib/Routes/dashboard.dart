@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isval_test/Components/header.dart';
 import 'package:isval_test/Components/record_list.dart';
-import 'package:isval_test/Utility/colorscheme.dart';
+import 'package:isval_test/Utility/colorpalette.dart';
 
 class DashboardRoute extends StatelessWidget {
   const DashboardRoute();

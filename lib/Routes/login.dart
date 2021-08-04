@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:isval_test/Models/login_model.dart';
 import 'package:isval_test/Services/api_service.dart';
-import 'package:isval_test/Utility/colorscheme.dart';
+import 'package:isval_test/Utility/colorpalette.dart';
 
 class LoginRoute extends StatefulWidget {
   const LoginRoute();

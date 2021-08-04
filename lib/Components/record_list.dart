@@ -16,7 +16,6 @@ class RecordList extends StatefulWidget {
   late final RecordType type;
 
   RecordList(this.type);
-
   @override
   _RecordListState createState() => _RecordListState();
 }

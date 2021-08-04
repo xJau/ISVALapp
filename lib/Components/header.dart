@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isval_test/Components/menu.dart';
-import 'package:isval_test/Utility/colorscheme.dart';
+import 'package:isval_test/Utility/colorpalette.dart';
+import 'package:isval_test/routes.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
   @override
@@ -30,9 +31,6 @@ class _HeaderState extends State<Header> {
   }
 
   void _onPress() {
-    Navigator.of(context)
-        .push(MaterialPageRoute<void>(builder: (BuildContext build) {
-      return Menu();
-    }));
+    Navigator.of(context).pushNamed(RouteGenerator.menu);
   }
 }

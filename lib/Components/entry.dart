@@ -1,6 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:isval_test/Models/entry_model.dart';
+import 'package:isval_test/Utility/colorpalette.dart';
 
 class Entry extends StatelessWidget {
   final EntryModel _model;
@@ -15,8 +18,7 @@ class Entry extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(_model.name,
-                style: TextStyle(
-                    color: Colors.lightBlue, fontWeight: FontWeight.bold)),
+                style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),
             SizedBox(height: 3),
             Text(_model.value),
             SizedBox(height: 20),
