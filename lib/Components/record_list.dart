@@ -7,6 +7,7 @@ import 'package:isval_test/Services/api_service.dart';
 
 enum RecordType {
   STOCK,
+  ORDERS,
 }
 
 ///A list of possible records with their relative entries. It's the component that
@@ -30,6 +31,9 @@ class _RecordListState extends State<RecordList> {
     switch (widget.type) {
       case (RecordType.STOCK):
         _model = ApiService.getDetailedStocks('ACL002');
+        break;
+      case (RecordType.ORDERS):
+        _model = ApiService.getOrders('ACL002');
         break;
       default:
         break;
@@ -72,7 +76,7 @@ class _RecordListState extends State<RecordList> {
                   //and all of its relative records
                   return Expanded(
                       child: ListView(children: [
-                    RecordListHeader(RecordType.STOCK),
+                    RecordListHeader(widget.type),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         mainAxisSize: MainAxisSize.min,

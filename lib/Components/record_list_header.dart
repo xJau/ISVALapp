@@ -6,7 +6,20 @@ import 'package:isval_test/Utility/colorpalette.dart';
 ///the Logo and the title of said list.
 class RecordListHeader extends StatelessWidget {
   final RecordType _type;
-  const RecordListHeader(this._type);
+  late String _headerText;
+  RecordListHeader(this._type) {
+    switch (_type) {
+      case (RecordType.STOCK):
+        this._headerText = "STOCKS";
+        break;
+      case (RecordType.ORDERS):
+        this._headerText = "ORDERS";
+        break;
+      default:
+        this._headerText = "UNSUPPORTED";
+        break;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,7 +48,8 @@ class RecordListHeader extends StatelessWidget {
                   shape: BoxShape.circle),
               child: Icon(Icons.shopping_bag_outlined, color: Colors.white)),
           SizedBox(width: 10),
-          Text("STOCK", style: TextStyle(color: Colorpalette.AZZURRO_ISVAL))
+          Text(this._headerText,
+              style: TextStyle(color: Colorpalette.AZZURRO_ISVAL))
         ]));
   }
 }
