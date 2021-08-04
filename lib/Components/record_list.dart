@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:isval_test/Components/record.dart';
 import 'package:isval_test/Components/record_list_header.dart';
 import 'package:isval_test/Models/entry_model.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:isval_test/Services/api_service.dart';
+import 'package:isval_test/Utility/colorpalette.dart';
 
 enum RecordType {
   STOCK,
@@ -84,8 +86,11 @@ class _RecordListState extends State<RecordList> {
                   ]));
                 } else {
                   //If the Future hasn't loaded yet we display Loading
-                  return Text(
-                      "Loading"); //TODO: Add a more beautiful loading Widget
+                  return SpinKitFadingCircle(itemBuilder: (ctx, idx) {
+                    return DecoratedBox(
+                        decoration:
+                            BoxDecoration(color: Colorpalette.AZZURRO_ISVAL));
+                  });
                 }
               })
         ]));

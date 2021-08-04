@@ -16,6 +16,7 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: Colorpalette.BIANCO,
       title: Text(_title, style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),
       actions: <Widget>[
