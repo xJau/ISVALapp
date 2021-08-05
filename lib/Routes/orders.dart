@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:isval_test/Components/Containers/record_list_container.dart';
 import 'package:isval_test/Components/header.dart';
 import 'package:isval_test/Components/record_list.dart';
 import 'package:isval_test/Utility/colorpalette.dart';
@@ -12,7 +13,7 @@ class OrdersRoute extends StatelessWidget {
         appBar: Header(),
         backgroundColor: Colorpalette.SFONDO_COLONNA,
         body: Center(
-          child: RecordList(RecordType.ORDERS),
+          child: RecordListContainer(RecordType.ORDERS),
         ));
   }
 }

@@ -34,12 +34,12 @@ class TotalStock implements IRecord {
   @override
   Map<String, String> getAttributes() {
     return {
-      "xeswip": "$wip",
-      "xesita": "$stockIta",
-      "xesvia": "$stockTrtoUs",
-      "xesusa": "$stockUs",
-      "xestcu": "$stockTrtoYou",
-      "xescns": "$consignment"
+      "WIP": "$wip",
+      "STOCK IN ITALY": "$stockIta",
+      "IN TRANSIT TO THE US": "$stockTrtoUs",
+      "STOCK IN THE US": "$stockUs",
+      "IN TRANSIT TO YOU": "$stockTrtoYou",
+      "CONSIGNMENT": "$consignment"
     };
   }
 
