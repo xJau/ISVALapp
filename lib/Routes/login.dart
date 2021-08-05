@@ -1,10 +1,10 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:isval_test/Models/login_model.dart';
+import 'package:isval_test/Models/login_response_model.dart';
 import 'package:isval_test/Services/api_service.dart';
+import 'package:isval_test/Services/login_service.dart';
 import 'package:isval_test/Utility/colorscheme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginRoute extends StatefulWidget {
   const LoginRoute();
@@ -14,14 +14,10 @@ class LoginRoute extends StatefulWidget {
 class _LoginRouteState extends State<LoginRoute> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey<FormState> _globalFormKey = GlobalKey<FormState>();
-  LoginRequestModel _requestModel =
-      LoginRequestModel(username: '', password: '');
+  bool _showPassword = false;
+  LoginRequestModel _requestModel = LoginRequestModel( password: '', username: '');
+  
 
-// @override
-//   void initState(){
-//     super.initState();
-//     _requestModel = LoginRequestModel(username: '',password: '');
-//   }
 
   Widget _buildUsernameTF() {
     return Column(
@@ -58,8 +54,6 @@ class _LoginRouteState extends State<LoginRoute> {
       ],
     );
   }
-
-  bool _showPassword = false;
 
   Widget _buildPasswordTF() {
     return Column(
@@ -107,9 +101,6 @@ class _LoginRouteState extends State<LoginRoute> {
                 splashColor: Colors.transparent,
               ),
             ),
-            validator: (password) => password != null && password.length < 8
-                ? 'Enter min. 8 characters'
-                : null,
           ),
         ),
       ],
@@ -122,8 +113,7 @@ class _LoginRouteState extends State<LoginRoute> {
       width: 100,
       child: ElevatedButton(
         onPressed: () {
-          if (_validateAndSave()) print(_requestModel.toJson());
-          ApiService.login(_requestModel).then((value) => null);
+          _requestSession();
         },
         child: Text('LOGIN'),
         style: ElevatedButton.styleFrom(
@@ -170,25 +160,26 @@ class _LoginRouteState extends State<LoginRoute> {
                       style: TextStyle(
                         color: Colorpalette.AZZURRO_ISVAL,
                         fontFamily: 'Quicksand',
-                        fontSize: 25,
+                        fontSize: 24,
                       ),
                     ),
                     SizedBox(
                       height: 200,
                     ),
                     Form(
-                        key: _globalFormKey,
-                        child: Column(
-                          children: [
-                            _buildUsernameTF(),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            _buildPasswordTF(),
-                            SizedBox(height: 30),
-                            _buildLoginButton(),
-                          ],
-                        ))
+                      key: _globalFormKey,
+                      child: Column(
+                        children: [
+                          _buildUsernameTF(),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          _buildPasswordTF(),
+                          SizedBox(height: 30),
+                          _buildLoginButton(),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -197,6 +188,23 @@ class _LoginRouteState extends State<LoginRoute> {
         ),
       ),
     );
+  }
+
+  void _requestSession() async {
+    final SharedPreferences loginSession =
+        await SharedPreferences.getInstance();
+        // loginSession.setString("token", "gucci");
+        print(loginSession.get('token'));
+    if (_validateAndSave()) print(_requestModel.toJson());
+      ApiService.login(_requestModel).then((String value) async {
+      LoginInstance instance = LoginInstance(value);
+      instance.obtainUser();
+      final SharedPreferences loginSession = await SharedPreferences.getInstance();
+      setState(() {
+      loginSession.setString("token", "gucci");
+      print(loginSession.get('token'));
+      });
+    });
   }
 
   bool _validateAndSave() {

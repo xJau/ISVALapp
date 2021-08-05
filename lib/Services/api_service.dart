@@ -1,26 +1,42 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
-import 'package:isval_test/Models/login_model.dart';
+import 'package:isval_test/Models/login_request_model.dart';
+import 'package:isval_test/Models/login_response_model.dart';
 import 'package:isval_test/Models/orders_model.dart';
 import 'package:isval_test/Models/single_stocks_model.dart';
 import 'dart:developer' as developer;
 
 import 'package:isval_test/Models/total_stock_model.dart';
+import 'package:isval_test/Models/user.dart';
 
 class ApiService {
   final String userName = 'admin';
-  final String password = 'AdmSVLA2021';
+  final String password = 'AdmSVLA2021!';
   static final String url = 'https://localhost:44315/api/';
 
-  static Future<LoginResponseModel> login(LoginRequestModel loginRequestModel) async {
-    final response = await Dio().get(url + 'Account/authenticate',
-        queryParameters: loginRequestModel.toJson());
-    if (response.statusCode == 200 || response.statusCode == 400) {
-      return LoginResponseModel.fromJson(response.data);
-    } else { 
-      throw Exception('Failed to load Data');
+  static Future<String> login(LoginRequestModel loginRequestModel) async {
+    try {
+      final response = await Dio().request(
+        url + 'Account/authenticate',
+        data: loginRequestModel.toJson(),
+        options: Options(
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+        ),
+      );
+      return LoginResponseModel.fromJson(response.data).token;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<User> getUser(token) async {
+    try {
+      Response response = await Dio().get(url + 'Account/getcurrentuser',
+          options: Options(headers: {'Authorization': 'bearer $token','accept' : '*/*'}));
+      return User.fromJson(response.data);
+    } catch (e) {
+      throw e;
     }
   }
 
