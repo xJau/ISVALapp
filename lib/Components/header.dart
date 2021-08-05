@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:isval_test/Components/menu.dart';
-import 'package:isval_test/Utility/colorscheme.dart';
+import 'package:isval_test/Utility/colorpalette.dart';
+import 'package:isval_test/Utility/custom_search_delegate.dart';
+import 'package:isval_test/routes.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
   @override
@@ -16,11 +17,14 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: Colorpalette.BIANCO,
       title: Text(_title, style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),
       actions: <Widget>[
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearchDelegate());
+            },
             icon: Icon(Icons.search, color: Colorpalette.AZZURRO_ISVAL)),
         IconButton(
             onPressed: _onPress,
@@ -30,9 +34,6 @@ class _HeaderState extends State<Header> {
   }
 
   void _onPress() {
-    Navigator.of(context)
-        .push(MaterialPageRoute<void>(builder: (BuildContext build) {
-      return Menu();
-    }));
+    Navigator.of(context).pushNamed(RouteGenerator.menu);
   }
 }

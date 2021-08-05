@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:isval_test/Models/login_response_model.dart';
 import 'package:isval_test/Services/api_service.dart';
+<<<<<<< HEAD
 import 'package:isval_test/Services/login_service.dart';
 import 'package:isval_test/Utility/colorscheme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+=======
+import 'package:isval_test/Utility/colorpalette.dart';
+>>>>>>> 6102d9d01302c43e78009f3bf51a0d88ada99a4e
 
 class LoginRoute extends StatefulWidget {
   const LoginRoute();

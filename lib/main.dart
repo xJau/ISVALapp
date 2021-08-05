@@ -14,7 +14,7 @@ class _IsvalAppState extends State<IsvalApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateTitle: (context) => "ISVAL",
-      initialRoute: RouteGenerator.login,
+      initialRoute: RouteGenerator.dashboard,
       onGenerateRoute: RouteGenerator.generateRoute,
       debugShowCheckedModeBanner: false,
     );

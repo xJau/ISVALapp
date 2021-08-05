@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:isval_test/Components/record_list.dart';
-import 'package:isval_test/Utility/colorscheme.dart';
+import 'package:isval_test/Utility/colorpalette.dart';
+import 'package:isval_test/routes.dart';
 
 ///This is the header of a single Record List. It's the component that contains
 ///the Logo and the title of said list.
 class RecordListHeader extends StatelessWidget {
-  
   final RecordType _type;
-  const RecordListHeader(this._type);
+  late final IconData _headerIcon;
+  late final String _headerText;
+  late final int _entriesNumber;
+  RecordListHeader(this._type, [this._entriesNumber = -1]) {
+    this._headerIcon = this._type.icon;
+    this._headerText = this._type.name;
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,9 +40,17 @@ class RecordListHeader extends StatelessWidget {
                         spreadRadius: 0)
                   ],
                   shape: BoxShape.circle),
-              child: Icon(Icons.shopping_bag_outlined, color: Colors.white)),
+              child: Icon(_headerIcon, color: Colors.white)),
           SizedBox(width: 10),
-          Text("STOCK", style: TextStyle(color: Colorpalette.AZZURRO_ISVAL))
+          Text(this._headerText,
+              style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),
+          if (_entriesNumber > 0) Spacer(),
+          if (_entriesNumber > 0)
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(RouteGenerator.stock);
+                },
+                child: const Text("Show More")),
         ]));
   }
 }

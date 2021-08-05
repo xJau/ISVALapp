@@ -8,7 +8,7 @@ part of '../orders_model.dart';
 
 OrdersModel _$OrdersModelFromJson(Map<String, dynamic> json) {
   return OrdersModel(
-    totalOrders: (json['gettotalorders'] as List<dynamic>)
+    totalOrders: (json['getorders'] as List<dynamic>)
         .map((e) => SingleOrderModel.fromJson(e as Map<String, dynamic>))
         .toList(),
   );

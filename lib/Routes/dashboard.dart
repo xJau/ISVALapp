@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:isval_test/Components/dashboard_menu.dart';
 import 'package:isval_test/Components/header.dart';
-import 'package:isval_test/Components/record_list.dart';
-import 'package:isval_test/Utility/colorscheme.dart';
+import 'package:isval_test/Utility/colorpalette.dart';
 
 class DashboardRoute extends StatelessWidget {
   const DashboardRoute();
@@ -11,6 +11,6 @@ class DashboardRoute extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colorpalette.SFONDO_PAGINA,
         appBar: Header(),
-        body: Center(child: RecordList(RecordType.STOCK)));
+        body: Center(child: DashboardMenu()));
   }
 }

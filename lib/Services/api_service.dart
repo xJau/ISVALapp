@@ -36,11 +36,9 @@ class ApiService {
           options: Options(headers: {'Authorization': 'bearer $token','accept' : '*/*'}));
       return User.fromJson(response.data);
     } catch (e) {
-      throw e;
-    }
-  }
+      throw e;}}
 
-  static void getCustomers() async {
+ void getCustomers() async {
     try {
       Response response = await Dio().get(url + 'Customer/getcustomers');
     } catch (e) {
