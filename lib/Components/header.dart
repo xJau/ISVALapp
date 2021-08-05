@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:isval_test/Utility/colorpalette.dart';
+import 'package:isval_test/Utility/custom_search_delegate.dart';
 import 'package:isval_test/routes.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
@@ -21,7 +22,9 @@ class _HeaderState extends State<Header> {
       title: Text(_title, style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),
       actions: <Widget>[
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearchDelegate());
+            },
             icon: Icon(Icons.search, color: Colorpalette.AZZURRO_ISVAL)),
         IconButton(
             onPressed: _onPress,

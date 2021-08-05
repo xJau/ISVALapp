@@ -3,6 +3,7 @@ import 'package:isval_test/Components/record.dart';
 import 'package:isval_test/Components/record_list_header.dart';
 import 'package:isval_test/Models/entry_model.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
+import 'package:string_similarity/string_similarity.dart';
 
 enum RecordType {
   STOCK,
@@ -49,10 +50,13 @@ class RecordList extends StatelessWidget {
   late Map<String, String> _values;
   late List<EntryModel> _entries;
   late final RecordType _type;
-  RecordList(this._model, this._type, [this.itemCount = -1]);
+  var _searchText;
+  RecordList(this._model, this._type,
+      [this.itemCount = -1, this._searchText = ""]);
   @override
   Widget build(BuildContext context) {
     _records = [];
+    List<Record> _tempRecords = [];
     //For all the entries in the Record List
     for (var i = 0; i < _model.length; i++) {
       //We take all of its entries
@@ -66,7 +70,14 @@ class RecordList extends StatelessWidget {
         if (value != null) _entries.add(new EntryModel(element, value));
       }
       //Once we mapped all of the entries for a record we add the record
-      _records.add(new Record(_model[i].getRecordName(), _entries));
+      _tempRecords.add(new Record(_model[i].getRecordName(), _entries));
+      if (_searchText != "") {
+        _records = _tempRecords
+            .where((i) => i.getName().similarityTo(_searchText) > 0.8)
+            .toList();
+      } else {
+        _records = _tempRecords;
+      }
     }
     //And we return a List View containing the header of the Record List
     //and all of its relative records

@@ -11,6 +11,9 @@ class Record extends StatelessWidget {
   final List<EntryModel> _models;
 
   const Record(this._name, this._models);
+  String getName() {
+    return _name;
+  }
 
   @override
   Widget build(BuildContext context) {

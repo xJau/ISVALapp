@@ -16,6 +16,7 @@ class _DashboardMenuState extends State<StatefulWidget> {
   late List<IRecord> _stock;
   late List<IRecord> _detailedStock;
   late var _models;
+  var _searchText = "";
 
   @override
   void initState() {
@@ -40,9 +41,18 @@ class _DashboardMenuState extends State<StatefulWidget> {
                 child: ListView(
                   cacheExtent: 500000,
                   children: [
+                    TextField(
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(), hintText: "search"),
+                      onChanged: (text) {
+                        this._searchText = text;
+                        setState(() {});
+                      },
+                    ),
                     Expanded(child: TotalStock(_stock)),
                     Expanded(
-                        child: RecordList(_detailedStock, RecordType.STOCK, 3))
+                        child: RecordList(
+                            _detailedStock, RecordType.STOCK, 3, _searchText))
                   ],
                 ),
               )
