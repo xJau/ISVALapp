@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:isval_test/Components/Containers/record_list_container.dart';
 import 'package:isval_test/Components/record_list.dart';
 import 'package:isval_test/Components/total_stock.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
@@ -35,7 +34,6 @@ class _DashboardMenuState extends State<StatefulWidget> {
       future: _models,
       builder: (ctx, snap) {
         if (snap.hasData) {
-          var data = snap.data;
           return Column(
             children: [
               Expanded(

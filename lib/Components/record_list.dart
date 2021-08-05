@@ -76,7 +76,7 @@ class RecordList extends StatelessWidget {
 
         ///TODO: Check if column can be removed
         child: Column(children: [
-          RecordListHeader(_type),
+          RecordListHeader(_type, itemCount),
           Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
