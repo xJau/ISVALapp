@@ -1,14 +1,11 @@
-import 'dart:developer';
+import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:isval_test/Models/login_request_model.dart';
 import 'package:isval_test/Routes/dashboard.dart';
-import 'package:isval_test/Services/api_service.dart';
 import 'package:isval_test/Services/login_service.dart';
 import 'package:isval_test/Utility/colorpalette.dart';
-import 'package:isval_test/routes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginRoute extends StatefulWidget {
   const LoginRoute();
@@ -47,7 +44,8 @@ class _LoginRouteState extends State<LoginRoute> {
           child: TextFormField(
             controller: usernameController,
             decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(top: 14, left: 20, bottom: 10),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 hintText: 'Username',
                 hintStyle: TextStyle(fontSize: 12),
                 border: InputBorder.none),
@@ -86,15 +84,17 @@ class _LoginRouteState extends State<LoginRoute> {
             obscureText: !this._showPassword,
             decoration: InputDecoration(
               hintText: 'Password',
-              contentPadding: EdgeInsets.only(top: 16, left: 14),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               hintStyle: TextStyle(fontSize: 12),
               border: InputBorder.none,
               suffixIcon: IconButton(
+                padding: EdgeInsets.only(right: 10, top: 5),
                 icon: Icon(
                   Icons.remove_red_eye,
                   color: this._showPassword
                       ? Colorpalette.AZZURRO_ISVAL
-                      : Colors.grey,
+                      : Color(0x459E9E9E),
                 ),
                 onPressed: () {
                   setState(() => this._showPassword = !this._showPassword);
@@ -110,24 +110,28 @@ class _LoginRouteState extends State<LoginRoute> {
   }
 
   Widget _buildLoginButton() {
-    return Container(
-      height: 45,
-      width: 100,
-      child: ElevatedButton(
-        onPressed: () {
-          _requestSession();
-        },
-        child: Text('LOGIN'),
-        style: ElevatedButton.styleFrom(
-          onPrimary: Colors.white,
-          primary: Colorpalette.AZZURRO_ISVAL,
-          minimumSize: Size(88, 20),
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
+    return Column(
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            _requestSession();
+          },
+          child: Text(
+            'LOGIN',
+            style: TextStyle(fontSize: 20),
+          ),
+          style: ElevatedButton.styleFrom(
+            onPrimary: Colors.white,
+            primary: Colorpalette.AZZURRO_ISVAL,
+            fixedSize: Size(150, 40),
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+            ),
+            enableFeedback: true,
           ),
         ),
-      ),
+      ],
     );
   }
 
@@ -147,6 +151,10 @@ class _LoginRouteState extends State<LoginRoute> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Image.asset('assets/isval_logo.png'),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Text(
                       'ISVAL.COM',
                       style: TextStyle(
@@ -165,7 +173,7 @@ class _LoginRouteState extends State<LoginRoute> {
                       ),
                     ),
                     SizedBox(
-                      height: 200,
+                      height: 150,
                     ),
                     Column(
                       children: [
@@ -189,10 +197,10 @@ class _LoginRouteState extends State<LoginRoute> {
   }
 
   void _requestSession() async {
-    LoginRequestModel _requestModel = LoginRequestModel(username: usernameController.text,password: passwordController.text);
+    LoginRequestModel _requestModel = LoginRequestModel(
+        username: usernameController.text, password: passwordController.text);
     accountInstance.login(_requestModel);
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext ctx) => DashboardRoute()));
   }
-
 }
