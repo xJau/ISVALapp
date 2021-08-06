@@ -1,14 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:isval_test/Models/login_response_model.dart';
+import 'package:isval_test/Models/login_request_model.dart';
+import 'package:isval_test/Routes/dashboard.dart';
 import 'package:isval_test/Services/api_service.dart';
-<<<<<<< HEAD
 import 'package:isval_test/Services/login_service.dart';
-import 'package:isval_test/Utility/colorscheme.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-=======
 import 'package:isval_test/Utility/colorpalette.dart';
->>>>>>> 6102d9d01302c43e78009f3bf51a0d88ada99a4e
+import 'package:isval_test/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginRoute extends StatefulWidget {
   const LoginRoute();
@@ -16,12 +16,10 @@ class LoginRoute extends StatefulWidget {
 }
 
 class _LoginRouteState extends State<LoginRoute> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  GlobalKey<FormState> _globalFormKey = GlobalKey<FormState>();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool _showPassword = false;
-  LoginRequestModel _requestModel = LoginRequestModel( password: '', username: '');
-  
-
+  LoginInstance accountInstance = LoginInstance();
 
   Widget _buildUsernameTF() {
     return Column(
@@ -47,7 +45,7 @@ class _LoginRouteState extends State<LoginRoute> {
               ),
               borderRadius: BorderRadius.circular(40)),
           child: TextFormField(
-            onSaved: (input) => _requestModel.username = input!,
+            controller: usernameController,
             decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(top: 14, left: 20, bottom: 10),
                 hintText: 'Username',
@@ -83,7 +81,7 @@ class _LoginRouteState extends State<LoginRoute> {
               ),
               borderRadius: BorderRadius.circular(40)),
           child: TextFormField(
-            onSaved: (input) => _requestModel.password = input!,
+            controller: passwordController,
             keyboardType: TextInputType.visiblePassword,
             obscureText: !this._showPassword,
             decoration: InputDecoration(
@@ -136,7 +134,6 @@ class _LoginRouteState extends State<LoginRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
@@ -170,19 +167,16 @@ class _LoginRouteState extends State<LoginRoute> {
                     SizedBox(
                       height: 200,
                     ),
-                    Form(
-                      key: _globalFormKey,
-                      child: Column(
-                        children: [
-                          _buildUsernameTF(),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          _buildPasswordTF(),
-                          SizedBox(height: 30),
-                          _buildLoginButton(),
-                        ],
-                      ),
+                    Column(
+                      children: [
+                        _buildUsernameTF(),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        _buildPasswordTF(),
+                        SizedBox(height: 30),
+                        _buildLoginButton(),
+                      ],
                     ),
                   ],
                 ),
@@ -195,28 +189,10 @@ class _LoginRouteState extends State<LoginRoute> {
   }
 
   void _requestSession() async {
-    final SharedPreferences loginSession =
-        await SharedPreferences.getInstance();
-        // loginSession.setString("token", "gucci");
-        print(loginSession.get('token'));
-    if (_validateAndSave()) print(_requestModel.toJson());
-      ApiService.login(_requestModel).then((String value) async {
-      LoginInstance instance = LoginInstance(value);
-      instance.obtainUser();
-      final SharedPreferences loginSession = await SharedPreferences.getInstance();
-      setState(() {
-      loginSession.setString("token", "gucci");
-      print(loginSession.get('token'));
-      });
-    });
+    LoginRequestModel _requestModel = LoginRequestModel(username: usernameController.text,password: passwordController.text);
+    accountInstance.login(_requestModel);
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (BuildContext ctx) => DashboardRoute()));
   }
 
-  bool _validateAndSave() {
-    final form = _globalFormKey.currentState;
-    if (form!.validate()) {
-      form.save();
-      return true;
-    }
-    return false;
-  }
 }
