@@ -189,10 +189,8 @@ class _LoginRouteState extends State<LoginRoute> {
   }
 
   void _requestSession() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     LoginRequestModel _requestModel = LoginRequestModel(username: usernameController.text,password: passwordController.text);
     accountInstance.login(_requestModel);
-    prefs.setString('token', accountInstance.authToken);
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext ctx) => DashboardRoute()));
   }
