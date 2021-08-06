@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
-import 'package:isval_test/Models/login_request_model.dart';
 import 'package:isval_test/Models/login_response_model.dart';
+import 'package:isval_test/Models/login_request_model.dart';
 import 'package:isval_test/Models/orders_model.dart';
 import 'package:isval_test/Models/single_stocks_model.dart';
 import 'dart:developer' as developer;
@@ -21,7 +21,7 @@ class ApiService {
         data: loginRequestModel.toJson(),
         options: Options(
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: {'Content-Type': 'application/json', 'accept': '*/*'},
         ),
       );
       return LoginResponseModel.fromJson(response.data).token;

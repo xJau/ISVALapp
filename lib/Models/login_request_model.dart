@@ -1,13 +1,15 @@
 
-class LoginResponseModel {
-  final String token;
+class LoginRequestModel {
+  String username;
+  String password;
 
-  LoginResponseModel({required this.token});
+  LoginRequestModel({required this.username, required this.password});
 
-  factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
-    return LoginResponseModel(
-        token: json["authenticationToken"] != null
-            ? json["authenticationToken"]
-            : "");
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      'username': username.trim(),
+      'password': password.trim()
+    };
+    return map;
   }
 }

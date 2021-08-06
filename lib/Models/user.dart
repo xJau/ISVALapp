@@ -43,11 +43,6 @@ class User implements IRecord {
     return username;
   }
 
-  void nullUser() {
-    id = 'null';
-    firstName = 'null';
-    lastName = 'null';
-    username = 'null';
-    email = 'null';
-  }
+  static User nullUser() =>
+      User(id: '', firstName: '', username: '', lastName: '', email: '');
 }

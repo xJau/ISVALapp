@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:isval_test/Services/login_service.dart';
 import 'package:isval_test/Utility/colorpalette.dart';
 import 'package:isval_test/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuUserInfo extends StatelessWidget {
   @override
@@ -13,8 +15,12 @@ class MenuUserInfo extends StatelessWidget {
         SizedBox(height: 10),
         InkWell(
             child: Text("LOGOUT", style: TextStyle(fontSize: 15)),
-            onTap: () =>
-                Navigator.of(context).pushNamed(RouteGenerator.dashboard))
+            onTap: () async{
+              LoginInstance accountInstance = LoginInstance();
+              accountInstance.logout();
+              SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+              sharedPreferences.setString('token', '');
+                Navigator.of(context).pushNamed(RouteGenerator.login);})
       ],
     );
   }

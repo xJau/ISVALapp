@@ -1,15 +1,18 @@
+import 'package:json_annotation/json_annotation.dart';
 
-class LoginRequestModel {
-  String username;
-  String password;
+part 'JSON/login_response_model.g.dart';
 
-  LoginRequestModel({required this.username, required this.password});
+@JsonSerializable()
+class LoginResponseModel {
+  @JsonKey(name: 'authenticationToken')
+  final String token;
 
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> map = {
-      'username': username.trim(),
-      'password': password.trim()
-    };
-    return map;
+  LoginResponseModel({required this.token});
+
+  factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
+    return LoginResponseModel(
+        token: json["authenticationToken"] != null
+            ? json["authenticationToken"]
+            : "");
   }
 }
