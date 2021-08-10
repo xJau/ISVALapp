@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:isval_test/Components/record.dart';
 import 'package:isval_test/Components/record_list_header.dart';
 import 'package:isval_test/Models/entry_model.dart';
@@ -31,8 +32,10 @@ extension RecordTypeExtension on RecordType {
         return Icons.plagiarism;
       case RecordType.STOCK:
         return Icons.inventory;
+        return FontAwesomeIcons.box;
       case RecordType.TOTAL_STOCK:
         return Icons.bar_chart;
+        // return FontAwesomeIcons.chartBar;
       default:
         return Icons.error;
     }

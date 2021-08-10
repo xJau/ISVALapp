@@ -17,13 +17,14 @@ class RecordListHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(children: [
+      padding: const EdgeInsets.all(10),
+      child: Row(
+        children: [
           SizedBox(width: 10),
           Container(
-              width: 36,
-              height: 36,
-              decoration: new BoxDecoration(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Colors.blue, Colors.lightBlue],
                     stops: [0.0008194930069930072, 0.9992897727272727],
@@ -40,17 +41,39 @@ class RecordListHeader extends StatelessWidget {
                         spreadRadius: 0)
                   ],
                   shape: BoxShape.circle),
-              child: Icon(_headerIcon, color: Colors.white)),
+              child: Icon(
+                _headerIcon,
+                color: Colors.white,
+                size: 25,
+              )),
           SizedBox(width: 10),
           Text(this._headerText,
-              style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),
+              style: TextStyle(color: Colorpalette.AZZURRO_ISVAL,
+            fontSize: 16,fontWeight: FontWeight.w700)),
           if (_entriesNumber > 0) Spacer(),
-          if (_entriesNumber > 0)
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(RouteGenerator.stock);
-                },
-                child: const Text("Show More")),
-        ]));
+          if (_entriesNumber > 0) viewMore()
+        ],
+      ),
+    );
+  }
+
+  Widget viewMore() {
+    return Container(
+      width: 100,
+      height: 30,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colorpalette.AZZURRO_ISVAL, width: 1.5),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: TextButton(
+        onPressed: () {
+          // Navigator.of(context).pushNamed(RouteGenerator.stock);
+        },
+        child: Text("View All",
+            style: TextStyle(
+                color: Colorpalette.AZZURRO_ISVAL,
+                fontWeight: FontWeight.w600)),
+      ),
+    );
   }
 }

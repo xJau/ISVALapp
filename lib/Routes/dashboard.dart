@@ -10,7 +10,7 @@ class DashboardRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colorpalette.SFONDO_PAGINA,
-        appBar: Header(),
+        // appBar: Header(),
         body: Center(child: DashboardMenu()));
   }
 }

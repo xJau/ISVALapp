@@ -50,10 +50,9 @@ class _DashboardMenuState extends State<StatefulWidget> {
                         setState(() {});
                       },
                     ),
-                    Expanded(child: TotalStock(_stock)),
-                    Expanded(
-                        child: RecordList(
-                            _detailedStock, RecordType.STOCK, 3, _searchText))
+                    TotalStock(_stock),
+                   RecordList(
+                            _detailedStock, RecordType.STOCK, 3, _searchText)
                   ],
                 ),
               )

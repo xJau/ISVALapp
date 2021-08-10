@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.isval_test">
    <application
-        android:label="isval_test"
+        android:label="ISVAL "
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

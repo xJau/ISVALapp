@@ -3,6 +3,7 @@ import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:isval_test/Models/login_response_model.dart';
 import 'package:isval_test/Models/login_request_model.dart';
 import 'package:isval_test/Models/orders_model.dart';
+import 'package:isval_test/Models/shipment_model.dart';
 import 'package:isval_test/Models/single_stocks_model.dart';
 import 'dart:developer' as developer;
 
@@ -58,11 +59,19 @@ class ApiService {
 
   static Future<List<IRecord>> getDetailedStocks(codCustomer) async {
     try {
-      developer.log("Data asked");
       Response response = await Dio()
           .get(url + 'Stock/getdetailedstock?CodCustomer=$codCustomer');
-      var model = SingleStocksModel.fromJson(response.data);
-      return model.singleStocks;
+      return SingleStocksModel.fromJson(response.data).singleStocks;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<List<IRecord>> getShipments(codCustomer) async {
+    try {
+      Response response = await Dio()
+          .get(url + 'GetShipmentsToCustomerList?CodCustomer=$codCustomer');
+      return ShipmentModel.fromJson(response.data).shipments;
     } catch (e) {
       throw e;
     }

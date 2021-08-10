@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:isval_test/Models/login_request_model.dart';
@@ -29,12 +27,13 @@ class _LoginRouteState extends State<LoginRoute> {
             style: TextStyle(
                 color: Color(0xff444444),
                 fontSize: 16,
+                fontWeight: FontWeight.w500,
                 fontFamily: 'Quicksand'),
           ),
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 6),
         Container(
-          height: 60,
+          height: 50,
           decoration: BoxDecoration(
               border: Border.all(
                 color: Color(0xff0a7bc0),
@@ -45,9 +44,9 @@ class _LoginRouteState extends State<LoginRoute> {
             controller: usernameController,
             decoration: InputDecoration(
                 contentPadding:
-                    EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                hintText: 'Username',
-                hintStyle: TextStyle(fontSize: 12),
+                    EdgeInsets.symmetric(vertical: 17, horizontal: 25),
+                // hintText: 'Username',
+                // hintStyle: TextStyle(fontSize: 12),
                 border: InputBorder.none),
           ),
         )
@@ -66,12 +65,13 @@ class _LoginRouteState extends State<LoginRoute> {
             style: TextStyle(
                 color: Color(0xff444444),
                 fontSize: 16,
+                fontWeight: FontWeight.w500,
                 fontFamily: 'Quicksand'),
           ),
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 6),
         Container(
-          height: 60,
+          height: 50,
           decoration: BoxDecoration(
               border: Border.all(
                 color: Colorpalette.AZZURRO_ISVAL,
@@ -83,13 +83,13 @@ class _LoginRouteState extends State<LoginRoute> {
             keyboardType: TextInputType.visiblePassword,
             obscureText: !this._showPassword,
             decoration: InputDecoration(
-              hintText: 'Password',
+              // hintText: 'Password',
+              // hintStyle: TextStyle(fontSize: 12),
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-              hintStyle: TextStyle(fontSize: 12),
+                  EdgeInsets.symmetric(vertical: 17, horizontal: 25),
               border: InputBorder.none,
               suffixIcon: IconButton(
-                padding: EdgeInsets.only(right: 10, top: 5),
+                padding: EdgeInsets.only(right: 15),
                 icon: Icon(
                   Icons.remove_red_eye,
                   color: this._showPassword
@@ -112,23 +112,34 @@ class _LoginRouteState extends State<LoginRoute> {
   Widget _buildLoginButton() {
     return Column(
       children: [
-        ElevatedButton(
-          onPressed: () {
-            _requestSession();
-          },
-          child: Text(
-            'LOGIN',
-            style: TextStyle(fontSize: 20),
-          ),
-          style: ElevatedButton.styleFrom(
-            onPrimary: Colors.white,
-            primary: Colorpalette.AZZURRO_ISVAL,
-            fixedSize: Size(150, 40),
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-            ),
-            enableFeedback: true,
+        Container(
+          width: 100,
+          height: 40,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colorpalette.AZZURRO_1, Colorpalette.AZZURRO_2],
+                stops: [0.0008194930069930072, 0.9992897727272727],
+                begin: Alignment(-0.71, -0.71),
+                end: Alignment(0.71, 0.71),
+                // angle: 135,
+                // scale: undefined,
+              ),
+              boxShadow: [
+                BoxShadow(
+                    color: Color(0x690a7bc0),
+                    offset: Offset(0, 2),
+                    blurRadius: 10,
+                    spreadRadius: 0)
+              ],
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(30)),
+          child: TextButton(
+            onPressed: () {
+              _requestSession();
+              HapticFeedback.lightImpact();
+            },
+            child: Text('Login',
+                style: TextStyle(fontSize: 20, color: Colors.white)),
           ),
         ),
       ],
@@ -151,7 +162,10 @@ class _LoginRouteState extends State<LoginRoute> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset('assets/isval_logo.png'),
+                    Image.asset(
+                      'assets/isval_logo.png',
+                      scale: 1.2,
+                    ),
                     SizedBox(
                       height: 20,
                     ),
@@ -161,7 +175,7 @@ class _LoginRouteState extends State<LoginRoute> {
                         color: Color(0xff0a7bc0),
                         fontFamily: 'Quicksand',
                         fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                        fontSize: 16,
                       ),
                     ),
                     Text(
@@ -169,17 +183,17 @@ class _LoginRouteState extends State<LoginRoute> {
                       style: TextStyle(
                         color: Colorpalette.AZZURRO_ISVAL,
                         fontFamily: 'Quicksand',
-                        fontSize: 24,
+                        fontSize: 20,
                       ),
                     ),
                     SizedBox(
-                      height: 150,
+                      height: 120,
                     ),
                     Column(
                       children: [
                         _buildUsernameTF(),
                         SizedBox(
-                          height: 30,
+                          height: 20,
                         ),
                         _buildPasswordTF(),
                         SizedBox(height: 30),
