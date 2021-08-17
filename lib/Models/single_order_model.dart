@@ -46,7 +46,7 @@ class SingleOrderModel implements IRecord {
   Map<String, dynamic> toJson() => _$SingleOrderModelToJson(this);
 
   @override
-  Map<String, String> getAttributes() {
+  Map<String, String> getAttributesA2() {
     return {
       "PURCHASE ORDER": "$xnraex",
       //"xnurif": "$xnurif",
@@ -63,4 +63,17 @@ class SingleOrderModel implements IRecord {
   String getRecordName() {
     return xnrane;
   }
+
+  @override
+  Map<String, String> getAttributesA1() {
+    // TODO: implement getAttributesA1
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<String, String> getAttributesA4() {
+    // TODO: implement getAttributesA4
+    throw UnimplementedError();
+  }
+
 }

@@ -8,18 +8,27 @@ part of '../user.dart';
 
 User _$UserFromJson(Map<String, dynamic> json) {
   return User(
-      id: json['id'] == null ? 'null' : json['id'],
-      username: json['username'] == null ? 'null' : json['username'],
-      firstName: json['firstName'] == null ? 'null' : json['firstName'],
-      lastName: json['lastName'] == null ? 'null' : json['lastName'],
-      email: json['email'] == null ? 'null' : json['email']
-    );
+    authToken:
+        json['authenticationToken'] == null ? '' : json['authenticationToken'],
+    id: json['id'] == null ? '' : json['id'],
+    firstName: json['firstName'] == null ? '' : json['firstName'],
+    lastName: json['lastName'] == null ? '' : json['lastName'],
+    username: json['userName'] == null ? '' : json['userName'],
+    email: json['email'] == null ? '' : json['email'],
+    role: json['roleName'] == null ? '' : json['roleName'],
+    customers: (json['customers'] as List<dynamic>)
+        .map((e) => Customer.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
 }
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+      'authToken': instance.authToken,
       'id': instance.id,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'username': instance.username,
       'email': instance.email,
+      'roleName': instance.role,
+      'customers': instance.customers
     };

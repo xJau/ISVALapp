@@ -31,21 +31,38 @@ class TotalStock implements IRecord {
 
   Map<String, dynamic> toJson() => _$TotalStockToJson(this);
 
-  @override
-  Map<String, String> getAttributes() {
-    return {
-      "WIP": "$wip",
-      "STOCK IN ITALY": "$stockIta",
-      "IN TRANSIT TO THE US": "$stockTrtoUs",
-      "STOCK IN THE US": "$stockUs",
-      "IN TRANSIT TO YOU": "$stockTrtoYou",
-      "CONSIGNMENT": "$consignment"
-    };
-  }
 
   @override
   String getRecordName() {
     // TODO: implement getRecordName
     throw UnimplementedError();
+  }
+
+  @override
+  Map<String, String> getAttributesA1() {
+    return {
+      "STOCK IN ITALY": "$stockIta",
+      "WIP": "$wip",
+      "IN TRANSIT TO THE US": "$stockTrtoUs",
+      "STOCK IN THE US": "$stockUs",
+      "IN TRANSIT TO YOU": "$stockTrtoYou"
+    };
+  }
+
+  @override
+  Map<String, String> getAttributesA4() {
+    return {"STOCK IN ITALY": "$stockIta", "WIP": "$wip"};
+  }
+
+  @override
+  Map<String, String> getAttributesA2() {
+    return {
+      "STOCK IN ITALY": "$stockIta",
+      "WIP": "$wip",
+      "IN TRANSIT TO THE US": "$stockTrtoUs",
+      "STOCK IN THE US": "$stockUs",
+      "IN TRANSIT TO YOU": "$stockTrtoYou",
+      "CONSIGNMENT": "$consignment"
+    };
   }
 }

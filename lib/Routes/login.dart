@@ -136,6 +136,12 @@ class _LoginRouteState extends State<LoginRoute> {
           child: TextButton(
             onPressed: () {
               _requestSession();
+              if (accountInstance.signedIn) {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext ctx) => DashboardRoute()));
+              }
               HapticFeedback.lightImpact();
             },
             child: Text('Login',
@@ -214,7 +220,5 @@ class _LoginRouteState extends State<LoginRoute> {
     LoginRequestModel _requestModel = LoginRequestModel(
         username: usernameController.text, password: passwordController.text);
     accountInstance.login(_requestModel);
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext ctx) => DashboardRoute()));
   }
 }

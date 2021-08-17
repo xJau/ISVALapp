@@ -54,22 +54,38 @@ class SingleStock implements IRecord {
   Map<String, dynamic> toJson() => _$SingleStockToJson(this);
 
   @override
-  Map<String, String> getAttributes() {
+  Map<String, String> getAttributesA2() {
     return {
-      //"xcodic": "$xcodic",
-      //"xcodar": "$xcodar",
       "WIP": "$xeswip",
       "STOCK IN ITALY": "$xesita",
       "IN TRANSIT TO THE US": "$xesvia",
       "STOCK IN THE US": "$xesusa",
       "IN TRANSIT TO YOU": "$xestcu",
       "CONSIGNMENT": "$xescns",
-      //"xacL03": "$xacL03",
     };
   }
 
   @override
   String getRecordName() {
     return xnrane;
+  }
+
+  @override
+  Map<String, String> getAttributesA1() {
+    return {
+      "WIP": "$xeswip",
+      "STOCK IN ITALY": "$xesita",
+      "IN TRANSIT TO THE US": "$xesvia",
+      "STOCK IN THE US": "$xesusa",
+      "IN TRANSIT TO YOU": "$xestcu",
+    };
+  }
+
+  @override
+  Map<String, String> getAttributesA4() {
+    return {
+      "WIP": "$xeswip",
+      "STOCK IN ITALY": "$xesita"
+    };
   }
 }

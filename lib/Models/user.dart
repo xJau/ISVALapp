@@ -1,48 +1,48 @@
-import 'package:isval_test/Interfaces/i_record_model.dart';
+import 'package:isval_test/Models/customer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'JSON/user.g.dart';
 
 @JsonSerializable()
-class User implements IRecord {
+class User {
+  @JsonKey(name: 'authenticationToken')
+  final String authToken;
   @JsonKey(name: 'id')
-  String id;
+  final String id;
   @JsonKey(name: 'firstName')
-  String firstName;
+  final String firstName;
   @JsonKey(name: 'lastName')
-  String lastName;
-  @JsonKey(name: 'username')
-  String username;
+  final String lastName;
+  @JsonKey(name: 'userName')
+  final String username;
   @JsonKey(name: 'email')
-  String email;
+  final String email;
+  @JsonKey(name: 'roleName')
+  final String role;
+  @JsonKey(name: 'customers')
+  final List<Customer> customers;
 
   User(
-      {required this.id,
+      {required this.authToken,
+      required this.id,
       required this.firstName,
       required this.lastName,
       required this.username,
-      required this.email});
+      required this.email,
+      required this.role,
+      required this.customers});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
-  @override
-  Map<String, String> getAttributes() {
-    return {
-      "id": this.id,
-      "firstName": this.firstName,
-      "lastName": this.lastName,
-      "username": this.username,
-      "email": this.email,
-    };
-  }
-
-  @override
-  String getRecordName() {
-    return username;
-  }
-
-  static User nullUser() =>
-      User(id: '', firstName: '', username: '', lastName: '', email: '');
+  static User nullUser() => User(
+      authToken: '',
+      id: '',
+      firstName: '',
+      username: '',
+      lastName: '',
+      email: '',
+      role: '',
+      customers: []);
 }

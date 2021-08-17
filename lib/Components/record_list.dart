@@ -64,7 +64,7 @@ class RecordList extends StatelessWidget {
     for (var i = 0; i < _model.length; i++) {
       //We take all of its entries
       if (i == itemCount) break;
-      _values = _model[i].getAttributes();
+      _values = _model[i].getAttributesA2();
       _entries = [];
       for (var j = 0; j < _values.keys.length; j++) {
         //And we create Entry Models for them
