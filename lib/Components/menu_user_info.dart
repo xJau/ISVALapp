@@ -13,7 +13,7 @@ class MenuUserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomLeft,
-      child: Column(      
+      child: Column(
         children: [
           Text("MINDGEAR SRL",
               style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),

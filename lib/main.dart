@@ -9,11 +9,11 @@ Future<void> main() async {
   String token = prefs.get('token') as String;
   if (token == null) token = '';
   LoginInstance accountActive = LoginInstance();
-  if(token != '') accountActive.loginT(token);
+  if (token != '') accountActive.loginT(token);
   runApp(MaterialApp(
     initialRoute: accountActive.authStatus == AuthStatus.loggedIn
         ? RouteGenerator.dashboard
-        : RouteGenerator.login,
+        : RouteGenerator.dashboard,
     onGenerateRoute: RouteGenerator.generateRoute,
   ));
 }

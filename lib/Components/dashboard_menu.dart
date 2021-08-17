@@ -5,7 +5,7 @@ import 'package:isval_test/Components/total_stock.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:isval_test/Services/api_service.dart';
 import 'package:isval_test/Utility/colorpalette.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardMenu extends StatefulWidget {
   _DashboardMenuState createState() => _DashboardMenuState();
@@ -51,8 +51,7 @@ class _DashboardMenuState extends State<StatefulWidget> {
                       },
                     ),
                     TotalStock(_stock),
-                   RecordList(
-                            _detailedStock, RecordType.STOCK, 3, _searchText)
+                    RecordList(_detailedStock, RecordType.STOCK, 3, _searchText)
                   ],
                 ),
               )
