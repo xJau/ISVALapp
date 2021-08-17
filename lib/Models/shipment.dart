@@ -62,17 +62,26 @@ class Shipment implements IRecord {
   Map<String, dynamic> toJson() => _$ShipmentToJson(this);
 
   @override
-  Map<String, String> getAttributes() {
-    return {
-      "QTY": "$quantity",
-      "CARRIER": "$mezzo",
-      "TRACKING NUMBER": "$trackCod",
-      "ETA TO US WAREHOUSE": "$etaUSA",
-    };
-  }
-
-  @override
   String getRecordName() {
     return shipNum;
   }
+
+  @override
+  Map<String, String> getAttributesA2() {
+    // TODO: implement getAttributesA1
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<String, String> getAttributesA4() {
+    // TODO: implement getAttributesA4
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<String, String> getAttributesA1() {
+    // TODO: implement getAttributesA1
+    throw UnimplementedError();
+  }
+
 }

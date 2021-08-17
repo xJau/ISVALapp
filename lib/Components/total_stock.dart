@@ -18,7 +18,7 @@ class TotalStock extends StatelessWidget {
   Widget build(BuildContext context) {
     _details = [];
     _model.forEach((element) {
-      var attrs = element.getAttributes();
+      var attrs = element.getAttributesA2();
       attrs.keys.forEach((element) {
         var value = attrs[element];
         if (value != null) _details.add(StockBox(EntryModel(element, value)));

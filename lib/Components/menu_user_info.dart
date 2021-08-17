@@ -21,17 +21,20 @@ class MenuUserInfo extends StatelessWidget {
           SizedBox(height: 10),
           InkWell(
               child: Text("LOGOUT", style: TextStyle(fontSize: 15)),
-              onTap: () async {
-                accountInstance.logout();
-                SharedPreferences sharedPreferences =
-                    await SharedPreferences.getInstance();
-                sharedPreferences.setString('token', '');
-                Navigator.of(context).pushNamed(RouteGenerator.login);
-                HapticFeedback.lightImpact();
+              onTap: ()  {
+                logout(context);
               })
         ],
       ),
     );
+  }
+
+  void logout(BuildContext context) async {
+  accountInstance.logout();
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('token', '');
+    Navigator.of(context).pushNamed(RouteGenerator.login);
+    HapticFeedback.lightImpact();
   }
 
   String getUsername() {

@@ -15,7 +15,7 @@ class ApiService {
   final String password = 'AdmSVLA2021!';
   static final String url = 'https://localhost:44315/api/';
 
-  static Future<String> login(LoginRequestModel loginRequestModel) async {
+  static Future<User> login(LoginRequestModel loginRequestModel) async {
     try {
       final response = await Dio().request(
         url + 'Account/authenticate',
@@ -25,7 +25,7 @@ class ApiService {
           headers: {'Content-Type': 'application/json', 'accept': '*/*'},
         ),
       );
-      return LoginResponseModel.fromJson(response.data).token;
+      return User.fromJson(response.data);
     } catch (e) {
       throw e;
     }

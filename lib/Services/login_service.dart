@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:isval_test/Models/login_request_model.dart';
 import 'package:isval_test/Models/user.dart';
 import 'package:isval_test/Services/api_service.dart';
@@ -6,42 +8,42 @@ import 'package:shared_preferences/shared_preferences.dart';
 enum AuthStatus { notLoggedin, loggedIn }
 
 class LoginInstance {
-  AuthStatus authStatus = AuthStatus.notLoggedin;
-  String authToken = "";
+  bool signedIn = false;
   late User currentUser;
   static final LoginInstance _instance = LoginInstance._inizialize();
 
   factory LoginInstance() => _instance;
 
   LoginInstance._inizialize() {
-    authStatus = AuthStatus.notLoggedin;
+    this.signedIn = false;
     this.currentUser = User.nullUser();
   }
 
-  void loginT(String token) async {
-    this.authToken = token;
-    this.authStatus = AuthStatus.loggedIn;
-    obtainUser();
+  void loginU(User user) {
+    currentUser = user;
+    if (currentUser.role == 'Administrator' || currentUser.role == 'Customer')
+      this.signedIn = true;
+  }
+
+  void saveUserInfos() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('user', json.encode(currentUser.toJson()));
+    prefs.setBool('signedIn', true);
   }
 
   void login(LoginRequestModel model) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();    
-    ApiService.login(model).then((String token) {
-      this.authStatus = AuthStatus.loggedIn;
-      this.authToken = token;
-      obtainUser();
-      prefs.setString('token', token);
+    ApiService.login(model).then((User user) {
+      currentUser = user;
+      if (currentUser.role == 'Administrator' ||
+          currentUser.role == 'Customer') {
+        saveUserInfos();
+        this.signedIn = true;
+      }
     });
-    this.authStatus = AuthStatus.loggedIn;
   }
 
   void logout() {
-    this.authToken = '';
-    this.authStatus = AuthStatus.notLoggedin;
+    this.signedIn = true;
     this.currentUser = User.nullUser();
-  }
-
-  void obtainUser() async {
-    ApiService.getUser(authToken).then((value) => this.currentUser = value);
   }
 }
