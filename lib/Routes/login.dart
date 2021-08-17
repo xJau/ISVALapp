@@ -218,7 +218,7 @@ class _LoginRouteState extends State<LoginRoute> {
 
   void _requestSession() async {
     LoginRequestModel _requestModel = LoginRequestModel(
-        username: usernameController.text, password: passwordController.text);
-    accountInstance.login(_requestModel);
+        username: usernameController.text, password: passwordController.text);  
+        accountInstance.login(_requestModel);
   }
 }

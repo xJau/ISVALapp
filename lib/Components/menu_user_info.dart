@@ -39,6 +39,6 @@ class MenuUserInfo extends StatelessWidget {
 
   String getUsername() {
     User currentUser = accountInstance.currentUser;
-    return currentUser.username.toUpperCase();
+    return currentUser.userName.toUpperCase();
   }
 }

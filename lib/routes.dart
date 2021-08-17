@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:isval_test/Components/menu.dart';
 import 'package:isval_test/Routes/metrics.dart';
+import 'package:isval_test/Routes/starting.dart';
 import 'Routes/dashboard.dart';
 import 'Routes/login.dart';
 import 'Routes/orders.dart';
 import 'Routes/shipping.dart';
 import 'Routes/stock.dart';
+import 'Routes/starting.dart';
 
 class RouteGenerator {
   static const String dashboard = '/';
@@ -16,6 +18,7 @@ class RouteGenerator {
   static const String metrics = '/metrics';
   static const String login = '/login';
   static const String menu = '/menu';
+  static const String starting = '/starting';
 
   RouteGenerator._();
 
@@ -30,11 +33,13 @@ class RouteGenerator {
       case shipping:
         return SlideRightRoute(page: ShippingRoute());
       case metrics:
-        return SlideRightRoute(page: const MetricsRoute());
+        return SlideRightRoute(page:  MetricsRoute());
       case login:
-        return MaterialPageRoute(builder: (_) => const LoginRoute());
+        return SlideRightRoute(page:  LoginRoute());
+      case starting:
+        return SlideRightRoute(page:  StartingRoute());
       case menu:
-        return SlideLeftRoute(page: const Menu());
+        return SlideLeftRoute(page:  Menu());
       default:
         throw FormatException("Route not found");
     }

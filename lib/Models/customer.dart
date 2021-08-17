@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'customer.g.dart';
+part 'JSON/customer.g.dart';
 
 @JsonSerializable()
 class Customer {
@@ -27,5 +27,27 @@ class Customer {
 
   Map<String, dynamic> toJson() => _$CustomerToJson(this);
 }
+
+/**
+ * A1: 
+ * Stock ITA
+ * WIP
+ * transit to US
+ * Stock US
+ * transit to you
+ * 
+ *  A2: 
+ * Stock ITA
+ * WIP
+ * transit to US
+ * Stock US
+ * transit to you
+ * consignment
+ * 
+ * A4:
+ * Stock ITA
+ * WIP
+ */
+
 
 enum CustomerCategory { A1, A2, A4 }
