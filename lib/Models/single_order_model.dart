@@ -1,6 +1,8 @@
 import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'customer.dart';
+
 part 'JSON/single_order_model.g.dart';
 
 @JsonSerializable()
@@ -45,34 +47,32 @@ class SingleOrderModel implements IRecord {
 
   Map<String, dynamic> toJson() => _$SingleOrderModelToJson(this);
 
-  @override
-  Map<String, String> getAttributesA2() {
-    return {
-      "PURCHASE ORDER": "$xnraex",
-      //"xnurif": "$xnurif",
-      //"xnrane": "$xnrane",
-      //"xcodar": "$xcodar",
-      "ETA": "$xdrcon",
-      "ORDER QUANTITY": "$xnumer",
-      "SHIPPED QUANTITY": "$xnumbu",
-      "OPEN QUANTITY": "$xsnume",
-    };
+ @override
+  Map<String, String> getAttributes(CustomerCategory category) {
+    switch (category) {
+      case CustomerCategory.A1:
+        return {
+
+        };
+      case CustomerCategory.A2:
+        return {
+          "PURCHASE ORDER": "$xnraex",
+          //"xnurif": "$xnurif",
+          //"xnrane": "$xnrane",
+          //"xcodar": "$xcodar",
+          "ETA": "$xdrcon",
+          "ORDER QUANTITY": "$xnumer",
+          "SHIPPED QUANTITY": "$xnumbu",
+          "OPEN QUANTITY": "$xsnume",
+        };
+      case CustomerCategory.A4:
+        return {};
+    }
   }
 
   @override
   String getRecordName() {
-    return xnrane;
-  }
-
-  @override
-  Map<String, String> getAttributesA1() {
-    // TODO: implement getAttributesA1
-    throw UnimplementedError();
-  }
-
-  @override
-  Map<String, String> getAttributesA4() {
-    // TODO: implement getAttributesA4
+    // TODO: implement getRecordName
     throw UnimplementedError();
   }
 

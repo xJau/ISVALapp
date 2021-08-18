@@ -5,7 +5,7 @@ import 'package:isval_test/Routes/metrics.dart';
 import 'package:isval_test/Routes/starting.dart';
 import 'Routes/dashboard.dart';
 import 'Routes/login.dart';
-import 'Routes/orders.dart';
+import 'Routes/details.dart';
 import 'Routes/shipping.dart';
 import 'Routes/stock.dart';
 import 'Routes/starting.dart';

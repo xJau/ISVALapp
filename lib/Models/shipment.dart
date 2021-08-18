@@ -1,6 +1,8 @@
 import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'customer.dart';
+
 part 'JSON/shipment.g.dart';
 
 @JsonSerializable()
@@ -62,34 +64,25 @@ class Shipment implements IRecord {
   Map<String, dynamic> toJson() => _$ShipmentToJson(this);
 
   @override
-  String getRecordName() {
-    return shipNum;
-  }
-
-  @override
-  Map<String, String> getAttributesA1() {
-    return {
-      "QTY": "$quantity",
-      "CARRIER": "$vetDesc",
-      "TRACKING NUMBER": "$trackCod",
-      "ETA TO US WAREHOUSE": "$etaUSA",
-    };
-  }
-
-  @override
-  Map<String, String> getAttributesA4() {
-    return {
-      "PURCHASE ORDER": "$cusOrdNum",
-      "QTY": "$quantity",
-      "CARRIER": "$vetDesc",
-      "TRACKING NUMBER": "$trackCod",
-      "ETA": "$etaDel",
-    };
-  }
-
-  @override
-  Map<String, String> getAttributesA2() {
-    // TODO: implement getAttributesA1
-    throw UnimplementedError();
+  Map<String, String> getAttributes(CustomerCategory category) {
+    switch (category) {
+      case CustomerCategory.A1:
+        return {
+          "QTY": "$quantity",
+          "CARRIER": "$vetDesc",
+          "TRACKING NUMBER": "$trackCod",
+          "ETA TO US WAREHOUSE": "$etaUSA",
+        };
+      case CustomerCategory.A2:
+        return {
+          "PURCHASE ORDER": "$cusOrdNum",
+          "QTY": "$quantity",
+          "CARRIER": "$vetDesc",
+          "TRACKING NUMBER": "$trackCod",
+          "ETA": "$etaDel",
+        };
+      case CustomerCategory.A4:
+        return {};
+    }
   }
 }
