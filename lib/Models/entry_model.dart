@@ -1,6 +1,9 @@
 class EntryModel {
   String name;
+
   String value;
 
-  EntryModel(this.name, this.value);
+  String shipmentType;
+
+  EntryModel(this.name, this.value, [this.shipmentType = ""]);
 }

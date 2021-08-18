@@ -13,7 +13,7 @@ Shipment _$ShipmentFromJson(Map<String, dynamic> json) {
     isvalNum: json['xnurif'] as String,
     cusOrdNum: json['xnraex'] as String,
     isvalItemCod: json['xcodar'] as String,
-    cusItemCod: json['xnrane'] as int,
+    cusItemCod: json['xnrane'] as String,
     tripCod: json['xitcode'] as String,
     quantity: json['xnumer'] as int,
     mezzo: json['xmezzo'] as String,

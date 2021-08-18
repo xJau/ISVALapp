@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:isval_test/Components/record.dart';
 import 'package:isval_test/Components/record_list_header.dart';
+import 'package:isval_test/Interfaces/i_shipment_model.dart';
 import 'package:isval_test/Models/customer.dart';
 import 'package:isval_test/Models/entry_model.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
@@ -107,7 +108,12 @@ class RecordList extends StatelessWidget {
         //And we create Entry Models for them
         var element = _values.keys.toList()[j];
         var value = _values[element];
-        if (value != null) _entries.add(new EntryModel(element, value));
+        if (value != null) {
+          if (element == "CARRIER" && _model[i] is IShipmentModel)
+            _entries.add(new EntryModel(element, value,
+                _model[i].cast(IShipmentModel).getShipmentType()));
+          _entries.add(new EntryModel(element, value));
+        }
       }
       //Once we mapped all of the entries for a record we add the record
       _tempRecords.add(new Record(_model[i].getRecordName(), _entries));

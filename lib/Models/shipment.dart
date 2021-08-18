@@ -34,7 +34,7 @@ class Shipment implements IRecord {
   @JsonKey(name: 'xcodar')
   final String isvalItemCod;
   @JsonKey(name: 'xnrane')
-  final int cusItemCod;
+  final String cusItemCod;
   @JsonKey(name: 'xitcode')
   final String tripCod;
   @JsonKey(name: 'xnumer')
@@ -67,7 +67,7 @@ class Shipment implements IRecord {
   }
 
   @override
-  Map<String, String> getAttributesA2() {
+  Map<String, String> getAttributesA1() {
     return {
       "QTY": "$quantity",
       "CARRIER": "$vetDesc",
@@ -88,7 +88,7 @@ class Shipment implements IRecord {
   }
 
   @override
-  Map<String, String> getAttributesA1() {
+  Map<String, String> getAttributesA2() {
     // TODO: implement getAttributesA1
     throw UnimplementedError();
   }

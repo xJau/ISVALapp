@@ -31,16 +31,11 @@ class ApiService {
   static Future<User> getUser(token) async {
     try {
       Response response = await Dio().get(url + 'Account/getcurrentuser',
-          options: Options(headers: {'Authorization': 'bearer $token','accept' : '*/*'}));
+          options: Options(
+              headers: {'Authorization': 'bearer $token', 'accept': '*/*'}));
       return User.fromJson(response.data);
     } catch (e) {
-      throw e;}}
-
- void getCustomers() async {
-    try {
-      Response response = await Dio().get(url + 'Customer/getcustomers');
-    } catch (e) {
-      print(e);
+      throw e;
     }
   }
 
@@ -66,8 +61,8 @@ class ApiService {
 
   static Future<List<IRecord>> getShipments(codCustomer) async {
     try {
-      Response response = await Dio()
-          .get(url + 'GetShipmentsToCustomerList?CodCustomer=$codCustomer');
+      Response response = await Dio().get(
+          url + 'Shipment/GetShipmentsToCustomer?CodCustomer=$codCustomer');
       return ShipmentModel.fromJson(response.data).shipments;
     } catch (e) {
       throw e;

@@ -8,7 +8,7 @@ part of '../shipment_model.dart';
 
 ShipmentModel _$ShipmentModelFromJson(Map<String, dynamic> json) {
   return ShipmentModel(
-    shipments: (json['getshipmentstocustomerlist'] as List<dynamic>)
+    shipments: (json['getshipmentstocustomer'] as List<dynamic>)
         .map((e) => Shipment.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
@@ -16,5 +16,5 @@ ShipmentModel _$ShipmentModelFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ShipmentModelToJson(ShipmentModel instance) =>
     <String, dynamic>{
-      'getshipmentstocustomerlist': instance.shipments,
+      'getshipmentstocustomer': instance.shipments,
     };

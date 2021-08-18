@@ -6,7 +6,12 @@ import 'package:isval_test/Models/entry_model.dart';
 import 'package:isval_test/Utility/colorpalette.dart';
 import 'package:isval_test/routes.dart';
 
-enum Decorator { NONE, BUTTON, VEHICLE }
+enum Decorator {
+  NONE,
+  BUTTON,
+  VEHICLE,
+  SHIPMENT,
+}
 
 class Entry extends StatelessWidget {
   final EntryModel _model;
@@ -16,6 +21,8 @@ class Entry extends StatelessWidget {
     "SHIPMENT": Decorator.VEHICLE,
     "IN TRANSIT TO THE US": Decorator.BUTTON,
     "IN TRANSIT TO YOU": Decorator.BUTTON,
+    "CARRIER": Decorator.VEHICLE,
+    "TRACKING NUMBER": Decorator.SHIPMENT
   };
 
   Decorator _getDecoratorFromName(String name) {
@@ -49,6 +56,29 @@ class Entry extends StatelessWidget {
                     style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),
                 SizedBox(height: 3),
                 Row(children: [
+                  Text(_model.value),
+                  SizedBox(width: 5),
+                  ElevatedButton(
+                      onPressed: () => {
+                            Navigator.of(context)
+                                .pushNamed(_getRouteFromName(_model.name))
+                          },
+                      child: Icon(Icons.search))
+                ]),
+                SizedBox(height: 20),
+              ],
+            ));
+      case Decorator.VEHICLE:
+        return Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(_model.name,
+                    style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),
+                SizedBox(height: 3),
+                Row(children: [
+                  Icon(Icons.airport_shuttle_outlined),
                   Text(_model.value),
                   SizedBox(width: 5),
                   ElevatedButton(
