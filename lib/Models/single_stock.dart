@@ -1,6 +1,8 @@
 import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'customer.dart';
+
 part 'JSON/single_stock.g.dart';
 
 @JsonSerializable()
@@ -53,17 +55,6 @@ class SingleStock implements IRecord {
 
   Map<String, dynamic> toJson() => _$SingleStockToJson(this);
 
-  @override
-  Map<String, String> getAttributesA2() {
-    return {
-      "WIP": "$xeswip",
-      "STOCK IN ITALY": "$xesita",
-      "IN TRANSIT TO THE US": "$xesvia",
-      "STOCK IN THE US": "$xesusa",
-      "IN TRANSIT TO YOU": "$xestcu",
-      "CONSIGNMENT": "$xescns",
-    };
-  }
 
   @override
   String getRecordName() {
@@ -71,21 +62,28 @@ class SingleStock implements IRecord {
   }
 
   @override
-  Map<String, String> getAttributesA1() {
-    return {
-      "WIP": "$xeswip",
-      "STOCK IN ITALY": "$xesita",
-      "IN TRANSIT TO THE US": "$xesvia",
-      "STOCK IN THE US": "$xesusa",
-      "IN TRANSIT TO YOU": "$xestcu",
-    };
+  Map<String, String> getAttributes(CustomerCategory category) {
+    switch (category) {
+      case CustomerCategory.A1:
+        return {
+          "WIP": "$xeswip",
+          "STOCK IN ITALY": "$xesita",
+          "IN TRANSIT TO THE US": "$xesvia",
+          "STOCK IN THE US": "$xesusa",
+          "IN TRANSIT TO YOU": "$xestcu",
+        };
+      case CustomerCategory.A2:
+        return {
+          "WIP": "$xeswip",
+          "STOCK IN ITALY": "$xesita",
+          "IN TRANSIT TO THE US": "$xesvia",
+          "STOCK IN THE US": "$xesusa",
+          "IN TRANSIT TO YOU": "$xestcu",
+          "CONSIGNMENT": "$xescns",
+        };
+      case CustomerCategory.A4:
+        return {"WIP": "$xeswip", "STOCK IN ITALY": "$xesita"};
+    }
   }
 
-  @override
-  Map<String, String> getAttributesA4() {
-    return {
-      "WIP": "$xeswip",
-      "STOCK IN ITALY": "$xesita"
-    };
-  }
 }

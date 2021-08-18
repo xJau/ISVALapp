@@ -20,18 +20,7 @@ class TotalStock extends StatelessWidget {
   Widget build(BuildContext context) {
     _details = [];
     _model.forEach((element) {
-      var attrs;
-      switch(getCategory()){
-        case CustomerCategory.A1:
-           attrs= element.getAttributesA2();
-          break;
-        case CustomerCategory.A2:
-           attrs = element.getAttributesA2();
-          break;
-        case CustomerCategory.A4:
-           attrs = element.getAttributesA2();
-          break;
-      }      
+      var attrs = element.getAttributes(getCategory());
       attrs.keys.forEach((element) {
         var value = attrs[element];
         if (value != null) _details.add(StockBox(EntryModel(element, value)));
@@ -43,6 +32,6 @@ class TotalStock extends StatelessWidget {
 }
 
 CustomerCategory getCategory() {
-  User currentUser = LoginInstance().currentUser;
-  return currentUser.customers[0].category;
+  Customer currentCustomer = LoginInstance().currentCustomer;
+  return currentCustomer.category;
 }

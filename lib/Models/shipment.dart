@@ -1,6 +1,8 @@
 import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'customer.dart';
+
 part 'JSON/shipment.g.dart';
 
 @JsonSerializable()
@@ -66,22 +68,21 @@ class Shipment implements IRecord {
     return shipNum;
   }
 
-  @override
-  Map<String, String> getAttributesA2() {
-    // TODO: implement getAttributesA1
-    throw UnimplementedError();
-  }
 
-  @override
-  Map<String, String> getAttributesA4() {
-    // TODO: implement getAttributesA4
-    throw UnimplementedError();
-  }
-
-  @override
-  Map<String, String> getAttributesA1() {
-    // TODO: implement getAttributesA1
-    throw UnimplementedError();
+ @override
+  Map<String, String> getAttributes(CustomerCategory category) {
+    switch (category) {
+      case CustomerCategory.A1:
+        return {
+          
+        };
+      case CustomerCategory.A2:
+        return {
+          
+        };
+      case CustomerCategory.A4:
+        return {};
+    }
   }
 
 }

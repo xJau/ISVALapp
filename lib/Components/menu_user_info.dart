@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:isval_test/Models/user.dart';
+import 'package:isval_test/Models/customer.dart';
+import 'package:isval_test/Routes/login.dart';
 import 'package:isval_test/Services/login_service.dart';
 import 'package:isval_test/Utility/colorpalette.dart';
-import 'package:isval_test/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuUserInfo extends StatelessWidget {
@@ -33,12 +33,16 @@ class MenuUserInfo extends StatelessWidget {
   accountInstance.logout();
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString('token', '');
-    Navigator.of(context).pushNamed(RouteGenerator.login);
+    Navigator.pop(context);
+     Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext ctx) => LoginRoute()));
     HapticFeedback.lightImpact();
   }
 
   String getUsername() {
-    User currentUser = accountInstance.currentUser;
-    return currentUser.userName.toUpperCase();
+    Customer currentCustomer = accountInstance.currentCustomer;
+    return currentCustomer.name.toUpperCase();
   }
 }

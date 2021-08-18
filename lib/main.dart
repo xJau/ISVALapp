@@ -14,6 +14,7 @@ Future<void> main() async {
 
   runApp(MaterialApp(
       initialRoute: initialRoute(signedIn),
+      // initialRoute: RouteGenerator.dashboard,
       onGenerateRoute: RouteGenerator.generateRoute));
 }
 

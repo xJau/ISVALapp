@@ -1,4 +1,5 @@
 import 'package:isval_test/Interfaces/i_record_model.dart';
+import 'package:isval_test/Models/customer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'JSON/total_stock.g.dart';
@@ -31,7 +32,6 @@ class TotalStock implements IRecord {
 
   Map<String, dynamic> toJson() => _$TotalStockToJson(this);
 
-
   @override
   String getRecordName() {
     // TODO: implement getRecordName
@@ -39,30 +39,28 @@ class TotalStock implements IRecord {
   }
 
   @override
-  Map<String, String> getAttributesA1() {
-    return {
-      "STOCK IN ITALY": "$stockIta",
-      "WIP": "$wip",
-      "IN TRANSIT TO THE US": "$stockTrtoUs",
-      "STOCK IN THE US": "$stockUs",
-      "IN TRANSIT TO YOU": "$stockTrtoYou"
-    };
+  Map<String, String> getAttributes(CustomerCategory category) {
+    switch (category) {
+      case CustomerCategory.A1:
+        return {
+          "STOCK IN ITALY": "$stockIta",
+          "WIP": "$wip",
+          "IN TRANSIT TO THE US": "$stockTrtoUs",
+          "STOCK IN THE US": "$stockUs",
+          "IN TRANSIT TO YOU": "$stockTrtoYou"
+        };
+      case CustomerCategory.A2:
+        return {
+          "STOCK IN ITALY": "$stockIta",
+          "WIP": "$wip",
+          "IN TRANSIT TO THE US": "$stockTrtoUs",
+          "STOCK IN THE US": "$stockUs",
+          "IN TRANSIT TO YOU": "$stockTrtoYou",
+          "CONSIGNMENT": "$consignment"
+        };
+      case CustomerCategory.A4:
+        return {"STOCK IN ITALY": "$stockIta", "WIP": "$wip"};
+    }
   }
 
-  @override
-  Map<String, String> getAttributesA4() {
-    return {"STOCK IN ITALY": "$stockIta", "WIP": "$wip"};
-  }
-
-  @override
-  Map<String, String> getAttributesA2() {
-    return {
-      "STOCK IN ITALY": "$stockIta",
-      "WIP": "$wip",
-      "IN TRANSIT TO THE US": "$stockTrtoUs",
-      "STOCK IN THE US": "$stockUs",
-      "IN TRANSIT TO YOU": "$stockTrtoYou",
-      "CONSIGNMENT": "$consignment"
-    };
-  }
 }
