@@ -69,6 +69,16 @@ class ApiService {
     }
   }
 
+  static Future<List<IRecord>> getUsShipments(codCustomer) async {
+    try {
+      Response response = await Dio()
+          .get(url + 'Shipment/GetShipmentsToUs?CodCustomer=$codCustomer');
+      return ShipmentModel.fromJson(response.data).shipments;
+    } catch (e) {
+      throw e;
+    }
+  }
+
   static Future<List<IRecord>> getOrders(codCustomer) async {
     try {
       Response response =

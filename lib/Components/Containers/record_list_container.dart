@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:isval_test/Components/record_list.dart';
+import 'package:isval_test/Components/total_stock.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
+import 'package:isval_test/Models/customer.dart';
 import 'package:isval_test/Services/api_service.dart';
+import 'package:isval_test/Services/login_service.dart';
 import 'package:isval_test/Utility/colorpalette.dart';
 
 class RecordListContainer extends StatefulWidget {
@@ -18,13 +21,13 @@ class _RecordListContainerState extends State<RecordListContainer> {
   void initState() {
     switch (widget.type) {
       case (RecordType.STOCK):
-        _model = ApiService.getDetailedStocks("ACL002");
+        _model = ApiService.getDetailedStocks(getCode());
         break;
       case (RecordType.ORDERS):
-        _model = ApiService.getOrders("ACL002");
+        _model = ApiService.getOrders(getCode());
         break;
       case (RecordType.SHIPMENTS):
-        _model = ApiService.getShipments("ACL002");
+        _model = ApiService.getShipments(getCode());
         break;
       default:
         break;
@@ -49,5 +52,14 @@ class _RecordListContainerState extends State<RecordListContainer> {
               },
             );
         });
+  }
+
+  String getCode() {
+    Customer currentCustomer = LoginInstance().currentCustomer;
+    return currentCustomer.code;
+  }
+
+  CustomerCategory getCategory() {
+    return LoginInstance().currentCustomer.category;
   }
 }

@@ -82,9 +82,8 @@ class RecordList extends StatelessWidget {
             if (mod is IShipmentModel)
               _entries
                   .add(new EntryModel(element, value, mod.getShipmentType()));
-            else
-              _entries.add(new EntryModel(element, value));
-          }
+          } else
+            _entries.add(new EntryModel(element, value));
         }
       }
       //Once we mapped all of the entries for a record we add the record
@@ -114,7 +113,7 @@ class RecordList extends StatelessWidget {
   }
 
   CustomerCategory getCategory() {
-    User currentUser = LoginInstance().currentUser;
-    return currentUser.customers[0].category;
+    Customer currentCustomer = LoginInstance().currentCustomer;
+    return currentCustomer.category;
   }
 }

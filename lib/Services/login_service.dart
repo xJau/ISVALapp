@@ -13,8 +13,6 @@ class LoginInstance {
   late User currentUser;
   late Customer currentCustomer;
   static final LoginInstance _instance = LoginInstance._inizialize();
- 
-
 
   factory LoginInstance() => _instance;
 
@@ -55,11 +53,8 @@ class LoginInstance {
     prefs.setBool('signedIn', false);
   }
 
-
   void selectCustomer(int i) {
-     int magicNumber = currentUser.customers.length - 10;
-    currentCustomer = currentUser.customers[magicNumber];
-    
+    currentCustomer = currentUser.customers[i];
   }
 
   void logout() async {
