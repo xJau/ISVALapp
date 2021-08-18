@@ -23,6 +23,9 @@ class _RecordListContainerState extends State<RecordListContainer> {
       case (RecordType.ORDERS):
         _model = ApiService.getOrders("ACL002");
         break;
+      case (RecordType.SHIPMENTS):
+        _model = ApiService.getShipments("ACL002");
+        break;
       default:
         break;
     }

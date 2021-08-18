@@ -68,14 +68,23 @@ class Shipment implements IRecord {
 
   @override
   Map<String, String> getAttributesA2() {
-    // TODO: implement getAttributesA1
-    throw UnimplementedError();
+    return {
+      "QTY": "$quantity",
+      "CARRIER": "$vetDesc",
+      "TRACKING NUMBER": "$trackCod",
+      "ETA TO US WAREHOUSE": "$etaUSA",
+    };
   }
 
   @override
   Map<String, String> getAttributesA4() {
-    // TODO: implement getAttributesA4
-    throw UnimplementedError();
+    return {
+      "PURCHASE ORDER": "$cusOrdNum",
+      "QTY": "$quantity",
+      "CARRIER": "$vetDesc",
+      "TRACKING NUMBER": "$trackCod",
+      "ETA": "$etaDel",
+    };
   }
 
   @override
@@ -83,5 +92,4 @@ class Shipment implements IRecord {
     // TODO: implement getAttributesA1
     throw UnimplementedError();
   }
-
 }

@@ -10,6 +10,7 @@ enum RecordType {
   STOCK,
   ORDERS,
   TOTAL_STOCK,
+  SHIPMENTS,
 }
 
 extension RecordTypeExtension on RecordType {
@@ -21,6 +22,8 @@ extension RecordTypeExtension on RecordType {
         return "STOCKS";
       case RecordType.TOTAL_STOCK:
         return "TOTAL_STOCK";
+      case RecordType.SHIPMENTS:
+        return "SHIPMENTS";
       default:
         return "UNSUPPORTED";
     }
@@ -32,10 +35,10 @@ extension RecordTypeExtension on RecordType {
         return Icons.plagiarism;
       case RecordType.STOCK:
         return Icons.inventory;
-        return FontAwesomeIcons.box;
       case RecordType.TOTAL_STOCK:
         return Icons.bar_chart;
-        // return FontAwesomeIcons.chartBar;
+      case RecordType.SHIPMENTS:
+        return Icons.car_rental_outlined;
       default:
         return Icons.error;
     }
