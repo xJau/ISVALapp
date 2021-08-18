@@ -31,6 +31,12 @@ class LoginInstance {
     prefs.setBool('signedIn', true);
   }
 
+  void removeUserInfos() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('user');
+    prefs.setBool('signedIn', false);
+  }
+
   void login(LoginRequestModel model) async {
     ApiService.login(model).then((User user) {
       currentUser = user;
@@ -42,8 +48,9 @@ class LoginInstance {
     });
   }
 
-  void logout() {
-    this.signedIn = true;
+  void logout() async {
+    this.signedIn = false;
     this.currentUser = User.nullUser();
+    removeUserInfos();
   }
 }

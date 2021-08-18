@@ -9,24 +9,28 @@ import 'Models/user.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  bool signedIn = await signIn();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool signedIn = prefs.getBool('signedIn') as bool;
 
   runApp(MaterialApp(
-      initialRoute: signedIn ? RouteGenerator.dashboard : RouteGenerator.login,
+      initialRoute: initialRoute(signedIn),
       onGenerateRoute: RouteGenerator.generateRoute));
 }
 
-Future<bool> signIn() async {
+String initialRoute(bool signedIn) {
+  if (signedIn == null) return RouteGenerator.starting;
+  if (signedIn) {
+    signIn();
+    return RouteGenerator.dashboard;
+  } else
+    return RouteGenerator.login;
+}
+
+void signIn() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool signedIn = prefs.getBool('signedIn') as bool;
-  if (signedIn == null)
-    signedIn = false;
-  else {
-    String userString = prefs.getString('user') as String;
-    var userMap = json.decode(userString);
-    User currentUser = User.fromJson(userMap);
-    LoginInstance accountActive = LoginInstance();
-    accountActive.loginU(currentUser);
-  }
-  return signedIn;
+  String userString = prefs.getString('user') as String;
+  var userMap = json.decode(userString);
+  User currentUser = User.fromJson(userMap);
+  LoginInstance accountActive = LoginInstance();
+  accountActive.loginU(currentUser);
 }

@@ -6,7 +6,7 @@ part 'JSON/user.g.dart';
 @JsonSerializable()
 class User {
   @JsonKey(name: 'authenticationToken')
-  final String authToken;
+  final String authenticationToken;
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: 'firstName')
@@ -14,7 +14,7 @@ class User {
   @JsonKey(name: 'lastName')
   final String lastName;
   @JsonKey(name: 'userName')
-  final String username;
+  final String userName;
   @JsonKey(name: 'email')
   final String email;
   @JsonKey(name: 'roleName')
@@ -23,11 +23,11 @@ class User {
   final List<Customer> customers;
 
   User(
-      {required this.authToken,
+      {required this.authenticationToken,
       required this.id,
       required this.firstName,
       required this.lastName,
-      required this.username,
+      required this.userName,
       required this.email,
       required this.role,
       required this.customers});
@@ -37,10 +37,10 @@ class User {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   static User nullUser() => User(
-      authToken: '',
+      authenticationToken: '',
       id: '',
       firstName: '',
-      username: '',
+      userName: '',
       lastName: '',
       email: '',
       role: '',

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:isval_test/Components/record.dart';
 import 'package:isval_test/Components/record_list_header.dart';
+import 'package:isval_test/Models/customer.dart';
 import 'package:isval_test/Models/entry_model.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
+import 'package:isval_test/Models/user.dart';
+import 'package:isval_test/Services/login_service.dart';
 import 'package:string_similarity/string_similarity.dart';
 
 enum RecordType {
@@ -61,6 +64,37 @@ class RecordList extends StatelessWidget {
       [this.itemCount = -1, this._searchText = ""]);
   @override
   Widget build(BuildContext context) {
+    switch (getCategory()) {
+      case CustomerCategory.A1:
+        A1Cycle();
+        break;
+      case CustomerCategory.A2:
+        A2Cycle();
+        break;
+      case CustomerCategory.A4:
+        A4Cycle();
+        break;
+    }
+
+    return Padding(
+        padding: const EdgeInsets.all(20),
+
+        ///TODO: Check if column can be removed
+        child: Column(children: [
+          RecordListHeader(_type, itemCount),
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: _records.toList())
+        ]));
+  }
+
+  CustomerCategory getCategory() {
+    User currentUser = LoginInstance().currentUser;
+    return currentUser.customers[0].category;
+  }
+
+  void A2Cycle() {
     _records = [];
     List<Record> _tempRecords = [];
     //For all the entries in the Record List
@@ -87,17 +121,63 @@ class RecordList extends StatelessWidget {
     }
     //And we return a List View containing the header of the Record List
     //and all of its relative records
+  }
 
-    return Padding(
-        padding: const EdgeInsets.all(20),
+  void A1Cycle() {
+    _records = [];
+    List<Record> _tempRecords = [];
+    //For all the entries in the Record List
+    for (var i = 0; i < _model.length; i++) {
+      //We take all of its entries
+      if (i == itemCount) break;
+      _values = _model[i].getAttributesA1();
+      _entries = [];
+      for (var j = 0; j < _values.keys.length; j++) {
+        //And we create Entry Models for them
+        var element = _values.keys.toList()[j];
+        var value = _values[element];
+        if (value != null) _entries.add(new EntryModel(element, value));
+      }
+      //Once we mapped all of the entries for a record we add the record
+      _tempRecords.add(new Record(_model[i].getRecordName(), _entries));
+      if (_searchText != "") {
+        _records = _tempRecords
+            .where((i) => i.getName().similarityTo(_searchText) > 0.8)
+            .toList();
+      } else {
+        _records = _tempRecords;
+      }
+    }
+    //And we return a List View containing the header of the Record List
+    //and all of its relative records
+  }
 
-        ///TODO: Check if column can be removed
-        child: Column(children: [
-          RecordListHeader(_type, itemCount),
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: _records.toList())
-        ]));
+  void A4Cycle() {
+    _records = [];
+    List<Record> _tempRecords = [];
+    //For all the entries in the Record List
+    for (var i = 0; i < _model.length; i++) {
+      //We take all of its entries
+      if (i == itemCount) break;
+      _values = _model[i].getAttributesA4();
+      _entries = [];
+      for (var j = 0; j < _values.keys.length; j++) {
+        //And we create Entry Models for them
+        var element = _values.keys.toList()[j];
+        var value = _values[element];
+        if (value != null) _entries.add(new EntryModel(element, value));
+      }
+      //Once we mapped all of the entries for a record we add the record
+      _tempRecords.add(new Record(_model[i].getRecordName(), _entries));
+      if (_searchText != "") {
+        _records = _tempRecords
+            .where((i) => i.getName().similarityTo(_searchText) > 0.8)
+            .toList();
+      } else {
+        _records = _tempRecords;
+      }
+    }
+    //And we return a List View containing the header of the Record List
+    //and all of its relative records
   }
 }
