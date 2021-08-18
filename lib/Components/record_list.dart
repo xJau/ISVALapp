@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:isval_test/Components/record.dart';
 import 'package:isval_test/Components/record_list_header.dart';
 import 'package:isval_test/Interfaces/i_shipment_model.dart';
@@ -65,9 +64,9 @@ class RecordList extends StatelessWidget {
       [this.itemCount = -1, this._searchText = ""]);
   @override
   Widget build(BuildContext context) {
-     _records = [];
+    _records = [];
     List<Record> _tempRecords = [];
-     //For all the entries in the Record List
+    //For all the entries in the Record List
     for (var i = 0; i < _model.length; i++) {
       //We take all of its entries
       if (i == itemCount) break;
@@ -78,10 +77,14 @@ class RecordList extends StatelessWidget {
         var element = _values.keys.toList()[j];
         var value = _values[element];
         if (value != null) {
-          if (element == "CARRIER" && _model[i] is IShipmentModel)
-            _entries.add(new EntryModel(element, value,
-                _model[i].cast(IShipmentModel).getShipmentType()));
-          _entries.add(new EntryModel(element, value));
+          if (element == "CARRIER") {
+            Object mod = _model[i];
+            if (mod is IShipmentModel)
+              _entries
+                  .add(new EntryModel(element, value, mod.getShipmentType()));
+            else
+              _entries.add(new EntryModel(element, value));
+          }
         }
       }
       //Once we mapped all of the entries for a record we add the record
@@ -114,5 +117,4 @@ class RecordList extends StatelessWidget {
     User currentUser = LoginInstance().currentUser;
     return currentUser.customers[0].category;
   }
-
 }

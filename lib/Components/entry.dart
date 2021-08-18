@@ -42,6 +42,19 @@ class Entry extends StatelessWidget {
     }
   }
 
+  IconData _getIconByType() {
+    switch (_model.shipmentType) {
+      case "TRUCK":
+        return Icons.car_rental_outlined;
+      case "SHIP":
+        return Icons.waves_outlined;
+      case "PLANE":
+        return Icons.airplane_ticket_outlined;
+      default:
+        return Icons.error;
+    }
+  }
+
   const Entry(this._model);
 
   Widget createEntry(_model, context) {
@@ -78,7 +91,7 @@ class Entry extends StatelessWidget {
                     style: TextStyle(color: Colorpalette.AZZURRO_ISVAL)),
                 SizedBox(height: 3),
                 Row(children: [
-                  Icon(Icons.airport_shuttle_outlined),
+                  Icon(_getIconByType()),
                   Text(_model.value),
                   SizedBox(width: 5),
                   ElevatedButton(

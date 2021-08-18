@@ -62,5 +62,4 @@ class TotalStock implements IRecord {
         return {"STOCK IN ITALY": "$stockIta", "WIP": "$wip"};
     }
   }
-
 }

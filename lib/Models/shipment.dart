@@ -1,4 +1,5 @@
 import 'package:isval_test/Interfaces/i_record_model.dart';
+import 'package:isval_test/Interfaces/i_shipment_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'customer.dart';
@@ -6,7 +7,7 @@ import 'customer.dart';
 part 'JSON/shipment.g.dart';
 
 @JsonSerializable()
-class Shipment implements IRecord {
+class Shipment implements IRecord, IShipmentModel {
   Shipment(
       {required this.cusCod,
       required this.shipNum,
@@ -84,5 +85,16 @@ class Shipment implements IRecord {
       case CustomerCategory.A4:
         return {};
     }
+  }
+
+  @override
+  String getRecordName() {
+    return cusOrdNum;
+    throw UnimplementedError();
+  }
+
+  @override
+  String getShipmentType() {
+    return mezds;
   }
 }

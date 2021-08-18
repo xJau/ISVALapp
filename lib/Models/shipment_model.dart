@@ -5,7 +5,6 @@ part 'JSON/shipment_model.g.dart';
 
 @JsonSerializable()
 class ShipmentModel {
-
   @JsonKey(name: 'getshipmentstocustomerlist')
   List<Shipment> shipments;
 
@@ -13,7 +12,8 @@ class ShipmentModel {
     required this.shipments,
   });
 
-  factory ShipmentModel.fromJson(Map<String, dynamic> json) => _$ShipmentModelFromJson(json);
+  factory ShipmentModel.fromJson(Map<String, dynamic> json) =>
+      _$ShipmentModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ShipmentModelToJson(this);
 }
