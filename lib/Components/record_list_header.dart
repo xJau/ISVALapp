@@ -80,7 +80,7 @@ class RecordListHeader extends StatelessWidget {
    String _getRouteFromName(String _name) {
     switch (_name) {
       case "STOCK":
-        return RouteGenerator.stockDetail;
+        return RouteGenerator.stock;
       case "SHIPMENTS":
         return RouteGenerator.shipping;
       default:
