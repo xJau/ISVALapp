@@ -59,7 +59,10 @@ class TotalStock implements IRecord {
           "CONSIGNMENT": "$consignment"
         };
       case CustomerCategory.A4:
-        return {"STOCK IN ITALY": "$stockIta", "WIP": "$wip"};
+        return {
+          "STOCK IN ITALY": "$stockIta",
+          "WIP": "$wip",
+        };
     }
   }
 }

@@ -169,7 +169,7 @@ class _LoginRouteState extends State<LoginRoute> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/isval_logo.png',
+                      'assets/images/isval_logo.png',
                       scale: 1.2,
                     ),
                     SizedBox(

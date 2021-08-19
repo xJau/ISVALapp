@@ -55,7 +55,6 @@ class SingleStock implements IRecord {
 
   Map<String, dynamic> toJson() => _$SingleStockToJson(this);
 
-
   @override
   String getRecordName() {
     return xnrane;
@@ -82,8 +81,11 @@ class SingleStock implements IRecord {
           "CONSIGNMENT": "$xescns",
         };
       case CustomerCategory.A4:
-        return {"WIP": "$xeswip", "STOCK IN ITALY": "$xesita"};
+        return {
+          "WIP": "$xeswip",
+          "STOCK IN ITALY": "$xesita",
+          "IN TRANSIT TO YOU": "$xestcu"
+        };
     }
   }
-
 }

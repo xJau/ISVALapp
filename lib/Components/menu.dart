@@ -17,7 +17,7 @@ class Menu extends StatelessWidget {
         appBar: AppBar(
           shadowColor: Colors.transparent,
           backgroundColor: Colorpalette.BIANCO,
-          title: Text("ISVAL", style: TextStyle(color: menu_header_color)),
+          actions: [Image.asset('assets/images/isval_longlogo.png',),SizedBox(width: 20,)],
           iconTheme: IconThemeData(color: Colorpalette.AZZURRO_ISVAL),
         ),
         body: Padding(

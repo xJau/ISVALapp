@@ -13,7 +13,7 @@ class OrdersRoute extends StatelessWidget {
         appBar: Header(),
         backgroundColor: Colorpalette.SFONDO_COLONNA,
         body: Center(
-          child: RecordListContainer(RecordType.ORDERS),
+          child: RecordListContainer(RecordType.ORDERS,''),
         ));
   }
 }

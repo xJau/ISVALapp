@@ -35,7 +35,7 @@ class StartingRoute extends StatelessWidget {
           children: [
             Spacer(),
             Image.asset(
-              'assets/isval_logo.png',
+              'assets/images/isval_logo.png',
               scale: 1.2,
             ),
             Spacer(),
@@ -74,7 +74,7 @@ class StartingRoute extends StatelessWidget {
           children: [
             Spacer(),
             Image.asset(
-              'assets/isval_logo.png',
+              'assets/images/isval_logo.png',
               scale: 1.2,
             ),
             Spacer(),
@@ -113,7 +113,7 @@ class StartingRoute extends StatelessWidget {
           children: [
             Spacer(),
             Image.asset(
-              'assets/isval_logo.png',
+              'assets/images/isval_logo.png',
               scale: 1.2,
             ),
             Spacer(),

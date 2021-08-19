@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:isval_test/Components/menu.dart';
 import 'package:isval_test/Routes/metrics.dart';
 import 'package:isval_test/Routes/starting.dart';
+import 'package:isval_test/Routes/stock_detail_page.dart';
 import 'Routes/dashboard.dart';
 import 'Routes/login.dart';
 import 'Routes/details.dart';
@@ -15,6 +16,7 @@ class RouteGenerator {
   static const String orders = '/orders';
   static const String stock = '/stock';
   static const String shipping = '/shipping';
+  static const String stockDetail = '/stock/detail';
   static const String metrics = '/metrics';
   static const String login = '/login';
   static const String menu = '/menu';
@@ -32,6 +34,8 @@ class RouteGenerator {
         return SlideRightRoute(page: StocksRoute());
       case shipping:
         return SlideRightRoute(page: ShippingRoute());
+      // case stockDetail:
+      //   return SlideRightRoute(page: StockDetailRoute());
       case metrics:
         return SlideRightRoute(page:  MetricsRoute());
       case login:

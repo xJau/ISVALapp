@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:isval_test/Models/login_request_model.dart';
 import 'package:isval_test/Models/orders_model.dart';
+import 'package:isval_test/Models/shipment_us_model.dart';
 import 'package:isval_test/Models/shipment_model.dart';
 import 'package:isval_test/Models/single_stocks_model.dart';
 import 'package:isval_test/Models/total_stock_model.dart';
@@ -62,7 +63,7 @@ class ApiService {
   static Future<List<IRecord>> getShipments(codCustomer) async {
     try {
       Response response = await Dio().get(
-          url + 'Shipment/GetShipmentsToCustomer?CodCustomer=$codCustomer');
+          url + 'Shipment/GetShipmentsToCustomerList?CodCustomer=$codCustomer');
       return ShipmentModel.fromJson(response.data).shipments;
     } catch (e) {
       throw e;
@@ -73,7 +74,7 @@ class ApiService {
     try {
       Response response = await Dio()
           .get(url + 'Shipment/GetShipmentsToUs?CodCustomer=$codCustomer');
-      return ShipmentModel.fromJson(response.data).shipments;
+      return ShipmentToUsModel.fromJson(response.data).shipmentsToUs;
     } catch (e) {
       throw e;
     }

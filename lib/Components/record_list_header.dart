@@ -44,20 +44,20 @@ class RecordListHeader extends StatelessWidget {
               child: Icon(
                 _headerIcon,
                 color: Colors.white,
-                size: 25,
+                size: 17,
               )),
           SizedBox(width: 10),
           Text(this._headerText,
               style: TextStyle(color: Colorpalette.AZZURRO_ISVAL,
             fontSize: 16,fontWeight: FontWeight.w700)),
           if (_entriesNumber > 0) Spacer(),
-          if (_entriesNumber > 0) viewMore()
+          if (_entriesNumber > 0) viewMore(context)
         ],
       ),
     );
   }
 
-  Widget viewMore() {
+  Widget viewMore(context) {
     return Container(
       width: 100,
       height: 30,
@@ -67,7 +67,7 @@ class RecordListHeader extends StatelessWidget {
       ),
       child: TextButton(
         onPressed: () {
-          // Navigator.of(context).pushNamed(RouteGenerator.stock);
+          Navigator.of(context).pushNamed(_getRouteFromName(_headerText));
         },
         child: Text("View All",
             style: TextStyle(
@@ -75,5 +75,16 @@ class RecordListHeader extends StatelessWidget {
                 fontWeight: FontWeight.w600)),
       ),
     );
+  }
+
+   String _getRouteFromName(String _name) {
+    switch (_name) {
+      case "STOCK":
+        return RouteGenerator.stockDetail;
+      case "SHIPMENTS":
+        return RouteGenerator.shipping;
+      default:
+        return RouteGenerator.stock;
+    }
   }
 }

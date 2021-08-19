@@ -13,6 +13,6 @@ class StocksRoute extends StatelessWidget {
         appBar: Header(),
         body: Center(
             child:
-                ListView(children: [RecordListContainer(RecordType.STOCK)])));
+                ListView(children: [RecordListContainer(RecordType.STOCK,'')])));
   }
 }
