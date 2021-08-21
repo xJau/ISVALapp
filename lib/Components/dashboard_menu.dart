@@ -36,7 +36,6 @@ class _DashboardMenuState extends State<StatefulWidget> {
       _detailedStockModel.then((value) => _detailedStock = value),
       _detailedShippingModel.then((value) => _detailedShipping = value)
     ]);
-    print(DateTime.now());
     super.initState();
   }
 
