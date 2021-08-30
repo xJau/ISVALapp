@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:isval_test/Components/chat_button.dart';
+import 'package:isval_test/Components/chat_components.dart';
 import 'package:isval_test/Components/dashboard_menu.dart';
 import 'package:isval_test/Components/header.dart';
 import 'package:isval_test/Utility/colorpalette.dart';

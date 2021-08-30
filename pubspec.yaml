@@ -36,6 +36,7 @@ dependencies:
   percent_indicator: ^3.0.1
   intl: ^0.17.0
   imagebutton: ^0.0.6
+  bubble: ^1.2.1
   
 
 dev_dependencies:

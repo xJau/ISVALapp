@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:isval_test/Components/menu.dart';
-import 'package:isval_test/Routes/metrics.dart';
-import 'package:isval_test/Routes/starting.dart';
-import 'package:isval_test/Routes/stock_detail_page.dart';
+import 'Components/menu.dart';
+import 'Routes/metrics.dart';
 import 'Routes/dashboard.dart';
 import 'Routes/login.dart';
 import 'Routes/details.dart';
+import 'Routes/chat.dart';
 import 'Routes/shipping.dart';
 import 'Routes/stock.dart';
 import 'Routes/starting.dart';
@@ -19,6 +18,7 @@ class RouteGenerator {
   static const String stockDetail = '/stock/detail';
   static const String metrics = '/metrics';
   static const String login = '/login';
+  static const String chat = '/chat';
   static const String menu = '/menu';
   static const String starting = '/starting';
 
@@ -40,6 +40,8 @@ class RouteGenerator {
         return SlideRightRoute(page:  MetricsRoute());
       case login:
         return SlideRightRoute(page:  LoginRoute());
+      case chat:
+        return SlideRightRoute(page:  ChatRoute());
       case starting:
         return SlideRightRoute(page:  StartingRoute());
       case menu:
