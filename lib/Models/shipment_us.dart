@@ -1,39 +1,33 @@
 import 'package:isval_test/Interfaces/i_record_model.dart';
 import 'package:isval_test/Interfaces/i_shipment_model.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 import 'customer.dart';
 
-part 'JSON/shipment.g.dart';
+part 'JSON/shipment_us.g.dart';
 
 @JsonSerializable()
-class Shipment implements IRecord, IShipmentModel {
-  Shipment(
+class ShipmentToUs implements IRecord, IShipmentModel {
+  ShipmentToUs(
       {required this.cusCod,
-      required this.shipNum,
-      required this.isvalNum,
-      required this.cusOrdNum,
       required this.isvalItemCod,
       required this.cusItemCod,
       required this.tripCod,
       required this.quantity,
       required this.mezzo,
+      required this.mezds,
       required this.vetCode,
       required this.vetURL,
-      required this.mezds,
       required this.trackCod,
       required this.etaUSA,
       required this.etaDel,
-      required this.vetDesc});
+      required this.vetDesc,
+      required this.seaAir,
+      required this.port,
+      required this.train,
+      required this.warehouse});
 
   @JsonKey(name: 'xcodic')
   final String cusCod;
-  @JsonKey(name: 'xnumsp')
-  final String shipNum;
-  @JsonKey(name: 'xnurif')
-  final String isvalNum;
-  @JsonKey(name: 'xnraex')
-  final String cusOrdNum;
   @JsonKey(name: 'xcodar')
   final String isvalItemCod;
   @JsonKey(name: 'xnrane')
@@ -56,48 +50,56 @@ class Shipment implements IRecord, IShipmentModel {
   final String trackCod;
   @JsonKey(name: 'xetatw')
   final String etaUSA;
+  @JsonKey(name: 'xseair')
+  final bool seaAir;
+  @JsonKey(name: 'xport')
+  final bool port;
+  @JsonKey(name: 'xtrain')
+  final bool train;
+  @JsonKey(name: 'xwhouse')
+  final bool warehouse;
   @JsonKey(name: 'xdlvry')
   final String etaDel;
 
-  factory Shipment.fromJson(Map<String, dynamic> json) =>
-      _$ShipmentFromJson(json);
+  factory ShipmentToUs.fromJson(Map<String, dynamic> json) =>
+      _$ShipmentToUsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ShipmentToJson(this);
+  Map<String, dynamic> toJson() => _$ShipmentToUsToJson(this);
 
   @override
   Map<String, String> getAttributes(CustomerCategory category) {
     switch (category) {
       case CustomerCategory.A1:
         return {
-          "PART NUMBER": "$cusItemCod",
-          "QUANTITY": "$quantity",
+          "QTY": "$quantity",
           "CARRIER": "$vetDesc",
           "TRACKING NUMBER": "$trackCod",
           "ETA TO US WAREHOUSE": "$etaUSA",
         };
       case CustomerCategory.A2:
         return {
-          "PART NUMBER": "$cusItemCod",
-          "QUANTITY": "$quantity",
-          "CARRIER": "$vetDesc",
-          "TRACKING NUMBER": "$trackCod",
-          "ETA": "$etaDel",
-        };
-      case CustomerCategory.A4:
-        return {
-          "PART NUMBER": "$cusItemCod",
-          "QUANTITY": "$quantity",
+          "QTY": "$quantity",
           "CARRIER": "$vetDesc",
           "TRACKING NUMBER": "$trackCod",
           "ETA TO US WAREHOUSE": "$etaUSA",
         };
+      case CustomerCategory.A4:
+        return {};
     }
+  }
+
+  Map<String, bool> getShipmentStatus() {
+    return {
+      "MARE/AEREO": seaAir,
+      "PORTO": port,
+      "TRENO": train,
+      "WAREHOUSE": warehouse,
+    };
   }
 
   @override
   String getRecordName() {
-    return cusOrdNum;
-    throw UnimplementedError();
+    return isvalItemCod;
   }
 
   @override

@@ -8,8 +8,6 @@ import 'package:isval_test/Services/api_service.dart';
 import 'package:isval_test/Services/login_service.dart';
 import 'package:isval_test/Utility/colorpalette.dart';
 
-import 'header.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardMenu extends StatefulWidget {
   _DashboardMenuState createState() => _DashboardMenuState();
@@ -21,6 +19,8 @@ class _DashboardMenuState extends State<StatefulWidget> {
   late Future<List<IRecord>> _detailedStockModel;
   late List<IRecord> _stock;
   late List<IRecord> _detailedStock;
+  late Future<List<IRecord>> _detailedShippingModel;
+  late List<IRecord> _detailedShipping;
   late var _models;
   var _searchText = "";
   late String _codeCustomer;
@@ -30,50 +30,51 @@ class _DashboardMenuState extends State<StatefulWidget> {
     getCustomerCode();
     _stockModel = ApiService.getStock(_codeCustomer);
     _detailedStockModel = ApiService.getDetailedStocks(_codeCustomer);
+    _detailedShippingModel = ApiService.getShipments(_codeCustomer);
     _models = Future.wait([
       _stockModel.then((value) => _stock = value),
-      _detailedStockModel.then((value) => _detailedStock = value)
+      _detailedStockModel.then((value) => _detailedStock = value),
+      _detailedShippingModel.then((value) => _detailedShipping = value)
     ]);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: FutureBuilder(
-        future: _models,
-        builder: (ctx, snap) {
-          if (snap.hasData) {
-            return Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    cacheExtent: 500000,
-                    children: [
-                      TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(), hintText: "search"),
-                        onChanged: (text) {
-                          this._searchText = text;
-                          setState(() {});
-                        },
-                      ),
-                      TotalStock(_stock),
-                      RecordList(_detailedStock, RecordType.STOCK, 3, _searchText)
-                    ],
-                  ),
-                )
-              ],
-            );
-          } else
-            return SpinKitFadingCircle(
-              itemBuilder: (ctx, idx) {
-                return DecoratedBox(
-                    decoration: BoxDecoration(color: Colorpalette.AZZURRO_ISVAL));
-              },
-            );
-        },
-      ),
+    return FutureBuilder(
+      future: _models,
+      builder: (ctx, snap) {
+        if (snap.hasData) {
+          return Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  cacheExtent: 500000,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(), hintText: "search"),
+                      onChanged: (text) {
+                        this._searchText = text;
+                        setState(() {});
+                      },
+                    ),
+                    TotalStock(_stock),
+                    RecordList(_detailedStock, RecordType.STOCK, _searchText,3),
+                    RecordList(_detailedShipping, RecordType.SHIPMENTS, _searchText,3),
+                  ],
+                ),
+              )
+            ],
+          );
+        } else
+          return SpinKitFadingCircle(
+            itemBuilder: (ctx, idx) {
+              return DecoratedBox(
+                  decoration: BoxDecoration(color: Colorpalette.AZZURRO_ISVAL));
+            },
+          );
+      },
     );
   }
 

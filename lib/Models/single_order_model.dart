@@ -57,9 +57,6 @@ class SingleOrderModel implements IRecord {
       case CustomerCategory.A2:
         return {
           "PURCHASE ORDER": "$xnraex",
-          //"xnurif": "$xnurif",
-          //"xnrane": "$xnrane",
-          //"xcodar": "$xcodar",
           "ETA": "$xdrcon",
           "ORDER QUANTITY": "$xnumer",
           "SHIPPED QUANTITY": "$xnumbu",

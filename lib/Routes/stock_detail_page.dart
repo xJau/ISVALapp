@@ -4,8 +4,9 @@ import 'package:isval_test/Components/header.dart';
 import 'package:isval_test/Components/record_list.dart';
 import 'package:isval_test/Utility/colorpalette.dart';
 
-class ShippingRoute extends StatelessWidget {
-  const ShippingRoute();
+class StockDetailRoute extends StatelessWidget {
+  const StockDetailRoute(this.partNumber);
+  final partNumber;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +14,7 @@ class ShippingRoute extends StatelessWidget {
         appBar: Header(),
         body: Center(
           child: ListView(
-            children: [RecordListContainer(RecordType.SHIPMENTS, '')],
+            children: [RecordListContainer(RecordType.USSHIPMENTS,partNumber)],
           ),
         ));
   }

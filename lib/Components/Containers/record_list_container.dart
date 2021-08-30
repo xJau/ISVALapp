@@ -10,15 +10,18 @@ import 'package:isval_test/Utility/colorpalette.dart';
 
 class RecordListContainer extends StatefulWidget {
   late final RecordType type;
-  RecordListContainer(this.type);
+  late final String search;
+  RecordListContainer(this.type,this.search);
   @override
   _RecordListContainerState createState() => _RecordListContainerState();
 }
 
 class _RecordListContainerState extends State<RecordListContainer> {
   late Future<List<IRecord>> _model;
+  late String search;
   @override
   void initState() {
+    search = widget.search;
     switch (widget.type) {
       case (RecordType.STOCK):
         _model = ApiService.getDetailedStocks(getCode());
@@ -28,6 +31,9 @@ class _RecordListContainerState extends State<RecordListContainer> {
         break;
       case (RecordType.SHIPMENTS):
         _model = ApiService.getShipments(getCode());
+        break;
+      case (RecordType.USSHIPMENTS):
+        _model = ApiService.getUsShipments(getCode());
         break;
       default:
         break;
@@ -42,7 +48,7 @@ class _RecordListContainerState extends State<RecordListContainer> {
         builder: (BuildContext ctx, AsyncSnapshot<List<IRecord>> snap) {
           if (snap.hasData) {
             var data = snap.data;
-            return RecordList(data!, widget.type);
+            return RecordList(data!, widget.type,search);
           } else
             return SpinKitFadingCircle(
               itemBuilder: (ctx, idx) {

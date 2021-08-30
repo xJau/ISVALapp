@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:isval_test/Components/record.dart';
 import 'package:isval_test/Components/record_list_header.dart';
 import 'package:isval_test/Interfaces/i_shipment_model.dart';
@@ -9,23 +10,20 @@ import 'package:isval_test/Models/user.dart';
 import 'package:isval_test/Services/login_service.dart';
 import 'package:string_similarity/string_similarity.dart';
 
-enum RecordType {
-  STOCK,
-  ORDERS,
-  TOTAL_STOCK,
-  SHIPMENTS,
-}
+enum RecordType { STOCK, ORDERS, TOTAL_STOCK, SHIPMENTS, USSHIPMENTS }
 
 extension RecordTypeExtension on RecordType {
   String get name {
     switch (this) {
       case RecordType.ORDERS:
-        return "ORDERS";
+        return "ORDER";
       case RecordType.STOCK:
-        return "STOCKS";
+        return "STOCK";
       case RecordType.TOTAL_STOCK:
-        return "TOTAL_STOCK";
+        return "TOTAL STOCK";
       case RecordType.SHIPMENTS:
+        return "SHIPMENTS";
+      case RecordType.USSHIPMENTS:
         return "SHIPMENTS";
       default:
         return "UNSUPPORTED";
@@ -37,11 +35,13 @@ extension RecordTypeExtension on RecordType {
       case RecordType.ORDERS:
         return Icons.plagiarism;
       case RecordType.STOCK:
-        return Icons.inventory;
+        return FontAwesomeIcons.box;
       case RecordType.TOTAL_STOCK:
-        return Icons.bar_chart;
+        return FontAwesomeIcons.chartBar;
       case RecordType.SHIPMENTS:
-        return Icons.car_rental_outlined;
+        return FontAwesomeIcons.dollyFlatbed;
+      case RecordType.USSHIPMENTS:
+        return FontAwesomeIcons.dollyFlatbed;
       default:
         return Icons.error;
     }
@@ -56,12 +56,16 @@ class RecordList extends StatelessWidget {
   late final List<IRecord> _model;
   late final int itemCount;
   late List<Record> _records;
-  late Map<String, String> _values;
+  late Map<String, dynamic> _values;
   late List<EntryModel> _entries;
   late final RecordType _type;
   var _searchText;
-  RecordList(this._model, this._type,
-      [this.itemCount = -1, this._searchText = ""]);
+  RecordList(
+    this._model,
+    this._type, [
+    this._searchText = "",
+    this.itemCount = -1,
+  ]);
   @override
   Widget build(BuildContext context) {
     _records = [];

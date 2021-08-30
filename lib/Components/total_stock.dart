@@ -13,7 +13,6 @@ class TotalStock extends StatelessWidget {
   @override
   late List<IRecord> _model;
   late List<StockBox> _details;
-  User activeUser = LoginInstance().currentUser;
 
   TotalStock(this._model);
 
@@ -32,6 +31,5 @@ class TotalStock extends StatelessWidget {
 }
 
 CustomerCategory getCategory() {
-  Customer currentCustomer = LoginInstance().currentCustomer;
-  return currentCustomer.category;
+  return LoginInstance().currentCustomer.category;
 }
